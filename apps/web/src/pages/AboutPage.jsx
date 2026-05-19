@@ -186,7 +186,7 @@ function AboutPage() {
             </p>
           </div>
           <p>
-            These founding clubs—Hyde Park Rangers FC, Pilsen FC, Beverly FC, Midway FC, Al Farook FC, GF.Chicago.SN, Hunnids Athletic Club, and Bronzeville Athletic Club—are setting the standard. Their success and operational stability will pave the way for future expansions into the North, West, and eventually a unified city championship.
+            These founding clubs—Hyde Park Rangers FC, Pilsen FC, Beverly FC, Midway FC, Al Farooq FC, GF.Chicago.SN, Hunnids Athletic Club, and Bronzeville Athletic Club—are setting the standard. Their success and operational stability will pave the way for future expansions into the North, West, and eventually a unified city championship.
           </p>
         </div>
       </section>

@@ -20,7 +20,7 @@ function HomePage() {
   const { news, loading } = useSubstackFeed();
 
   const matchdayFixtures = [
-    { match: 'Hyde Park Rangers FC vs AL FAROOK', date: 'Sunday, May 17, 2025', location: 'Jackson Park' },
+    { match: 'Hyde Park Rangers FC vs Al Farooq', date: 'Sunday, May 17, 2025', location: 'Jackson Park' },
     { match: 'Bronzeville Athletic Club vs GF.Chicago.SN', date: 'Sunday, May 17, 2025', location: 'De La Salle' },
     { match: 'Beverly FC vs Pilsen FC', date: 'Sunday, May 17, 2025', location: 'Comed' },
     { match: 'Midway FC vs Hunnids Athletic Club', date: 'Sunday, May 17, 2025', location: 'West Lawn' }

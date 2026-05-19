@@ -12,7 +12,7 @@ const MOCK_PLAYERS = [
   { id: 'P001', name: 'Mateo Vasquez', club: 'Hyde Park Rangers FC', league: 'OutSouth League', division: 'Open', position: 'FW', number: '9', nationality: '🇲🇽', status: 'Active', stats: { goals: 6, assists: 2, appearances: 4, yellow: 0, red: 0, gPerGame: 1.5 } },
   { id: 'P002', name: 'Marcus Johnson', club: 'Bronzeville Athletic Club', league: 'OutSouth League', division: 'Open', position: 'MF', number: '10', nationality: '🇺🇸', status: 'Active', stats: { goals: 3, assists: 5, appearances: 4, yellow: 1, red: 0, gPerGame: 0.75 } },
   { id: 'P003', name: 'Diego Torres', club: 'Pilsen FC', league: 'OutSouth League', division: 'Open', position: 'DF', number: '4', nationality: '🇲🇽', status: 'Active', stats: { goals: 0, assists: 1, appearances: 4, yellow: 2, red: 0, gPerGame: 0 } },
-  { id: 'P004', name: 'Ahmad Al-Fayed', club: 'AL FAROOK', league: 'OutSouth League', division: 'Open', position: 'FW', number: '11', nationality: '🇯🇴', status: 'Injured', stats: { goals: 4, assists: 0, appearances: 2, yellow: 0, red: 0, gPerGame: 2.0 } },
+  { id: 'P004', name: 'Ahmad Al-Fayed', club: 'Al Farooq', league: 'OutSouth League', division: 'Open', position: 'FW', number: '11', nationality: '🇯🇴', status: 'Injured', stats: { goals: 4, assists: 0, appearances: 2, yellow: 0, red: 0, gPerGame: 2.0 } },
   { id: 'P005', name: 'Kevin O\'Connor', club: 'Beverly FC', league: 'OutSouth League', division: 'Open', position: 'GK', number: '1', nationality: '🇮🇪', status: 'Active', stats: { cleanSheets: 2, saves: 14, appearances: 4, yellow: 0, red: 0, goalsConceded: 3 } },
   { id: 'P006', name: 'Tarik Smith', club: 'Hunnids Athletic Club', league: 'OutSouth League', division: 'Open', position: 'MF', number: '8', nationality: '🇺🇸', status: 'Active', stats: { goals: 2, assists: 4, appearances: 4, yellow: 0, red: 0, gPerGame: 0.5 } },
   { id: 'P007', name: 'Luis Ramirez', club: 'Midway FC', league: 'OutSouth League', division: 'Open', position: 'FW', number: '7', nationality: '🇨🇴', status: 'Suspended', stats: { goals: 1, assists: 1, appearances: 3, yellow: 3, red: 1, gPerGame: 0.33 } },
@@ -24,7 +24,7 @@ const DIVISIONS = ['Open'];
 const POSITIONS = ['FW', 'MF', 'DF', 'GK'];
 const STATUSES = ['Active', 'Injured', 'Suspended'];
 const LEAGUES = ['OutSouth League'];
-const CLUBS = ['Hyde Park Rangers FC', 'Bronzeville Athletic Club', 'Pilsen FC', 'AL FAROOK', 'Beverly FC', 'Hunnids Athletic Club', 'Midway FC', 'GF.Chicago.SN'];
+const CLUBS = ['Hyde Park Rangers FC', 'Bronzeville Athletic Club', 'Pilsen FC', 'Al Farooq', 'Beverly FC', 'Hunnids Athletic Club', 'Midway FC', 'GF.Chicago.SN'];
 
 function PlayersPage() {
   const [filters, setFilters] = useState({

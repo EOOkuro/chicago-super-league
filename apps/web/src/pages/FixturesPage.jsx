@@ -8,7 +8,7 @@ const matchDays = [
     title: 'MATCH DAY 1',
     date: 'Sunday, May 17, 2025',
     matches: [
-      { home: 'Hyde Park Rangers FC', away: 'AL FAROOK', location: 'Jackson Park' },
+      { home: 'Hyde Park Rangers FC', away: 'Al Farooq', location: 'Jackson Park' },
       { home: 'Bronzeville Athletic Club', away: 'GF.Chicago.SN', location: 'De La Salle' },
       { home: 'Beverly FC', away: 'Pilsen FC', location: 'Comed' },
       { home: 'Midway FC', away: 'Hunnids Athletic Club', location: 'West Lawn' }
@@ -22,7 +22,7 @@ const matchDays = [
       { home: 'Pilsen FC', away: 'Bronzeville Athletic Club', location: 'Comed' },
       { home: 'Hyde Park Rangers FC', away: 'GF.Chicago.SN', location: 'Jackson Park' },
       { home: 'Beverly FC', away: 'Hunnids Athletic Club', location: 'Joan Kroc Center' },
-      { home: 'Midway FC', away: 'AL FAROOK', location: 'West Lawn' }
+      { home: 'Midway FC', away: 'Al Farooq', location: 'West Lawn' }
     ]
   },
   {
@@ -33,7 +33,7 @@ const matchDays = [
       { home: 'Pilsen FC', away: 'GF.Chicago.SN', location: 'Comed' },
       { home: 'Hyde Park Rangers FC', away: 'Midway FC', location: 'Jackson Park' },
       { home: 'Hunnids Athletic Club', away: 'Bronzeville Athletic Club', location: 'De La Salle' },
-      { home: 'Beverly FC', away: 'AL FAROOK', location: 'Joan Kroc Center' }
+      { home: 'Beverly FC', away: 'Al Farooq', location: 'Joan Kroc Center' }
     ]
   },
   {
@@ -42,7 +42,7 @@ const matchDays = [
     date: 'Sunday, June 8, 2025',
     matches: [
       { home: 'Bronzeville Athletic Club', away: 'GF.Chicago.SN', location: 'Jackson Park' },
-      { home: 'AL FAROOK', away: 'Bronzeville Athletic Club', location: 'Jackson Park' },
+      { home: 'Al Farooq', away: 'Bronzeville Athletic Club', location: 'Jackson Park' },
       { home: 'Midway FC', away: 'Beverly FC', location: 'West Lawn' },
       { home: 'Pilsen FC', away: 'Hyde Park Rangers FC', location: 'Comed' }
     ]
@@ -53,7 +53,7 @@ const matchDays = [
     date: 'Sunday, June 15, 2025',
     matches: [
       { home: 'Midway FC', away: 'Bronzeville Athletic Club', location: 'West Lawn' },
-      { home: 'AL FAROOK', away: 'GF.Chicago.SN', location: 'Jackson Park' },
+      { home: 'Al Farooq', away: 'GF.Chicago.SN', location: 'Jackson Park' },
       { home: 'Beverly FC', away: 'Hyde Park Rangers FC', location: 'Joan Kroc Center' },
       { home: 'Pilsen FC', away: 'Hunnids Athletic Club', location: 'Comed' }
     ]
@@ -65,7 +65,7 @@ const matchDays = [
     matches: [
       { home: 'Beverly FC', away: 'Bronzeville Athletic Club', location: 'Joan Kroc Center' },
       { home: 'Midway FC', away: 'GF.Chicago.SN', location: 'Midway' },
-      { home: 'Pilsen FC', away: 'AL FAROOK', location: 'Comed' },
+      { home: 'Pilsen FC', away: 'Al Farooq', location: 'Comed' },
       { home: 'Hyde Park Rangers FC', away: 'Hunnids Athletic Club', location: 'Jackson Park' }
     ]
   },
@@ -74,7 +74,7 @@ const matchDays = [
     title: 'MATCH DAY 7',
     date: 'Sunday, June 29, 2025',
     matches: [
-      { home: 'Hunnids Athletic Club', away: 'AL FAROOK', location: 'Joan Kroc Center' },
+      { home: 'Hunnids Athletic Club', away: 'Al Farooq', location: 'Joan Kroc Center' },
       { home: 'Bronzeville Athletic Club', away: 'Hyde Park Rangers FC', location: 'De La Salle' },
       { home: 'GF.Chicago.SN', away: 'Beverly FC', location: 'Jackson Park' },
       { home: 'Pilsen FC', away: 'Midway FC', location: 'Comed' }
@@ -104,7 +104,7 @@ function FixturesPage() {
               28 fixtures, 160+ players
             </div>
             <div className="bg-[hsl(var(--black))] text-[hsl(var(--true-white))] py-4 px-6 text-center label-text text-sm md:text-base tracking-widest leading-relaxed">
-              Hyde Park Rangers FC · Pilsen FC · Beverly FC · Midway FC · Al Farook FC · GF.Chicago.SN · Hunnids Athletic Club · Bronzeville Athletic Club
+              Hyde Park Rangers FC · Pilsen FC · Beverly FC · Midway FC · Al Farooq FC · GF.Chicago.SN · Hunnids Athletic Club · Bronzeville Athletic Club
             </div>
           </div>
         </div>
