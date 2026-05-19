@@ -53,7 +53,7 @@ export function useSubstackFeed(feedUrl = 'https://chicagosuperleague.substack.c
       try {
         setLoading(true);
         // Using rss2json as a public CORS proxy for RSS feeds
-        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`);
+        const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(feedUrl)}`);
         
         if (!response.ok) {
           throw new Error('Failed to fetch RSS feed');
