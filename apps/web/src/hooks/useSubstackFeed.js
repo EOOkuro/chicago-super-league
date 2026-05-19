@@ -9,9 +9,7 @@ export function useSubstackFeed(feedUrl = 'https://chicagosuperleague.substack.c
     const fetchFeed = async () => {
       try {
         setLoading(true);
-        const response = await fetch(
-  `https://corsproxy.io/?${encodeURIComponent(feedUrl)}`
-);
+        const response = await fetch('/api/feed');
 
 if (!response.ok) throw new Error('Failed to fetch RSS feed');
 
