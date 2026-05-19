@@ -10,14 +10,14 @@ export function useSubstackFeed(feedUrl = 'https://chicagosuperleague.substack.c
       try {
         setLoading(true);
         const response = await fetch(
-          `https://api.allorigins.win/get?url=${encodeURIComponent(feedUrl)}`
-        );
+  `https://corsproxy.io/?${encodeURIComponent(feedUrl)}`
+);
 
-        if (!response.ok) throw new Error('Failed to fetch RSS feed');
+if (!response.ok) throw new Error('Failed to fetch RSS feed');
 
-        const data = await response.json();
+        const text = await response.text();
         const parser = new DOMParser();
-        const xml = parser.parseFromString(data.contents, 'text/xml');
+        const xml = parser.parseFromString(text, 'text/xml');
         const items = Array.from(xml.querySelectorAll('item'));
 
         const formattedNews = items.map((item, index) => ({
