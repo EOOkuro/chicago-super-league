@@ -27,4 +27,21 @@ export function useSubstackFeed(feedUrl = 'https://chicagosuperleague.substack.c
             .replace(/<[^>]*>?/gm, '')
             .substring(0, 150) + '...' || '',
           pubDate: item.querySelector('pubDate')?.textContent || '',
-          author: item.querySelector('aut
+          author: item.querySelector('author')?.textContent || 'CSL Media',
+          link: item.querySelector('link')?.textContent || '#'
+        }));
+
+        setNews(formattedNews);
+      } catch (err) {
+        console.error('Error fetching feed:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeed();
+  }, [feedUrl]);
+
+  return { news, loading, error };
+}
