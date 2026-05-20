@@ -57,9 +57,8 @@ export async function fetchAllMatchData() {
 export function calculateStandings(matches) {
   const table = {};
   const ALL_CLUBS = [
-    'Al Farooq FC', 'Beverly FC', 'Hunnids Athletic Club', 'Bronzeville Athletic Club',
-    'Midway FC', 'Pilsen FC', 'Hyde Park Rangers FC', 'South Shore SC',
-    'GF Chicago SN', 'Czarni Jaslo Chicago'
+    'Al Farooq', 'Beverly FC', 'Hunnids Athletic Club', 'Bronzeville Athletic Club',
+    'Midway FC', 'Pilsen FC', 'Hyde Park Rangers FC', 'GF Chicago SN',
   ];
   ALL_CLUBS.forEach(club => {
     table[club] = { club, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0, form: [] };
