@@ -11,9 +11,12 @@ async function fetchCSV(url) {
   const res = await fetch(`/api/sheets?url=${encodeURIComponent(url)}`);
   const text = await res.text();
   const lines = text.trim().split('\n');
-  const headers = lines[0].split('\t').map(h => h.trim().replace(/^"|"$/g, ''));
+  const separator = lines[0].includes('\t') ? '\t' : ',';
+  const rawHeaders = lines[0].split(separator).map(h => h.trim().replace(/^"|"$/g, ''));
+  if (!rawHeaders[0]) rawHeaders[0] = 'Jersey';
+  const headers = rawHeaders;
   return lines.slice(1).map(line => {
-    const vals = line.split('\t').map(v => v.trim().replace(/^"|"$/g, ''));
+    const vals = line.split(separator).map(v => v.trim().replace(/^"|"$/g, ''));
     return Object.fromEntries(headers.map((h, i) => [h, vals[i] || '']));
   });
 }
