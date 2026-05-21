@@ -19,7 +19,7 @@ function Hero() {
           </h1>
           
           <p className="text-xl md:text-2xl text-[hsl(var(--gray))] mb-10 max-w-2xl animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            The premier competitive soccer league in Chicago. Bringing together diverse neighborhoods and fostering competitive excellence.
+            OutSouth League — South Side soccer bringing together diverse neighborhoods through culture, competition, and competitive excellence. The beginning of Chicago’s pro/rel pyramid.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
