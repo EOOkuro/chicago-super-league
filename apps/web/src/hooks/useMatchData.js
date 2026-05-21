@@ -10,6 +10,7 @@ const MATCH_SHEETS = [
   },
 ];
 
+// Clean CSV Parser
 async function fetchCSV(url) {
   const res = await fetch(`/api/sheets?url=${encodeURIComponent(url)}`);
   if (!res.ok) throw new Error(`Failed to fetch sheet: ${res.status}`);
@@ -17,50 +18,47 @@ async function fetchCSV(url) {
   const text = await res.text();
   const lines = text.trim().split('\n').filter(l => l.trim() !== '');
 
-  const separator = lines[0].includes('\t') ? '\t' : ',';
-
   const headers = lines[0]
-    .split(separator)
+    .split(',')
     .map(h => h.trim().replace(/^"|"$/g, ''));
 
   if (!headers[0]) headers[0] = 'Jersey';
 
   return lines.slice(1).map(line => {
-    const vals = line.split(separator).map(v => v.trim().replace(/^"|"$/g, ''));
+    const vals = line.split(',').map(v => v.trim().replace(/^"|"$/g, ''));
     return Object.fromEntries(headers.map((h, i) => [h, vals[i] || '']));
   });
 }
 
-
+// Fetch Match Data + Extract Scores
 export async function fetchAllMatchData() {
   const matches = [];
 
   for (const sheet of MATCH_SHEETS) {
     try {
       const rows = await fetchCSV(sheet.url);
-      console.log(`📊 ${sheet.name} - Rows fetched: ${rows.length}`);
+      console.log(`📊 ${sheet.name} - Rows: ${rows.length}`);
 
       const teamGoals = {};
 
-      // Extract goals from TOTAL rows
       rows.forEach(row => {
-        const teamCell = String(row.Team || '').trim().toUpperCase();
-        
-        if (teamCell.includes('TOTAL')) {
-          let teamName = String(row.Team || '')
-            .replace(/ FC TOTAL| TOTAL/gi, '')
+        const teamCell = String(row.Team || '').trim();
+
+        if (teamCell.toUpperCase().includes('TOTAL')) {
+          let teamName = teamCell
+            .replace(/ TOTAL$/i, '')
             .trim();
 
-          const goals = parseInt(row.Goals, 10) || 0;
+          const goals = parseInt(row.Goals || '0', 10);
 
           if (teamName) {
             teamGoals[teamName] = goals;
-            console.log(`✅ TOTAL detected: ${teamName} = ${goals} goals`);
+            console.log(`✅ TOTAL FOUND → ${teamName} ${goals} goals`);
           }
         }
       });
 
-      console.log("✅ Extracted goals:", teamGoals);
+      console.log("✅ Final Goals:", teamGoals);
 
       const match = {
         id: matches.length + 1,
@@ -72,10 +70,10 @@ export async function fetchAllMatchData() {
         awayScore: teamGoals[sheet.awayTeam] || 0,
         location: sheet.location,
         status: 'FT',
-        rows: rows,                    // Keep full rows for Results
+        rows,
       };
 
-      console.log("✅ Match created successfully");
+      console.log("✅ Match Created:", match);
       matches.push(match);
     } catch (err) {
       console.error(`Error fetching ${sheet.name}:`, err);
@@ -85,6 +83,7 @@ export async function fetchAllMatchData() {
   return matches;
 }
 
+// Calculate Standings
 export function calculateStandings(matches) {
   const table = {};
 
@@ -99,43 +98,26 @@ export function calculateStandings(matches) {
     'GF Chicago SN',
   ];
 
-  // Initialize all clubs
   ALL_CLUBS.forEach((club) => {
     table[club] = {
       club,
-      p: 0,
-      w: 0,
-      d: 0,
-      l: 0,
-      gf: 0,
-      ga: 0,
-      gd: 0,
-      pts: 0,
+      p: 0, w: 0, d: 0, l: 0,
+      gf: 0, ga: 0, gd: 0, pts: 0,
       form: [],
     };
   });
 
-  console.log("📊 Calculating standings for", matches.length, "matches");
-
-  matches.forEach((match, i) => {
+  matches.forEach((match) => {
     const home = String(match.homeTeam || '').trim();
     const away = String(match.awayTeam || '').trim();
     const hg = Number(match.homeScore) || 0;
     const ag = Number(match.awayScore) || 0;
 
-    console.log(`Match ${i+1}: ${home} ${hg} - ${ag} ${away}`);
-
     if (!home || !away) return;
 
-    // Ensure both teams exist in table
     [home, away].forEach(team => {
       if (!table[team]) {
-        table[team] = {
-          club: team,
-          p: 0, w: 0, d: 0, l: 0,
-          gf: 0, ga: 0, gd: 0, pts: 0,
-          form: [],
-        };
+        table[team] = { club: team, p:0, w:0, d:0, l:0, gf:0, ga:0, gd:0, pts:0, form:[] };
       }
     });
 
@@ -148,34 +130,25 @@ export function calculateStandings(matches) {
     table[away].ga += hg;
 
     if (hg > ag) {
-      table[home].w += 1;
-      table[home].pts += 3;
-      table[home].form.push('W');
-      table[away].l += 1;
-      table[away].form.push('L');
+      table[home].w += 1; table[home].pts += 3; table[home].form.push('W');
+      table[away].l += 1; table[away].form.push('L');
     } else if (ag > hg) {
-      table[away].w += 1;
-      table[away].pts += 3;
-      table[away].form.push('W');
-      table[home].l += 1;
-      table[home].form.push('L');
+      table[away].w += 1; table[away].pts += 3; table[away].form.push('W');
+      table[home].l += 1; table[home].form.push('L');
     } else {
-      table[home].d += 1;
-      table[away].d += 1;
-      table[home].pts += 1;
-      table[away].pts += 1;
-      table[home].form.push('D');
-      table[away].form.push('D');
+      table[home].d += 1; table[away].d += 1;
+      table[home].pts += 1; table[away].pts += 1;
+      table[home].form.push('D'); table[away].form.push('D');
     }
   });
 
-  const finalTable = Object.values(table)
+  return Object.values(table)
     .map((team) => ({
       ...team,
       gd: team.gf - team.ga,
       form: team.form.slice(-5).join(' ') || '- - - - -',
     }))
-    .sort((a, b) => 
+    .sort((a, b) =>
       b.pts - a.pts ||
       b.gd - a.gd ||
       b.gf - a.gf ||
@@ -185,7 +158,4 @@ export function calculateStandings(matches) {
       ...team,
       rank: index + 1,
     }));
-
-  console.log("✅ Final Standings:", finalTable);
-  return finalTable;
 }
