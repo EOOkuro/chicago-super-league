@@ -68,33 +68,64 @@ export async function fetchAllMatchData() {
 
   for (const sheet of MATCH_SHEETS) {
     try {
-      const res = await fetch(`/api/sheets?url=${encodeURIComponent(sheet.url)}`);
-      const text = await res.text();
-      
-      console.log("Raw CSV preview:", text.substring(0, 500));
+      const rows = await fetchCSV(sheet.url);     // ← Keep this for Results page
+      console.log(`📊 ${sheet.name} - Rows fetched: ${rows.length}`);
 
-      // Extract totals using regex
-      const alFarooqMatch = text.match(/AL FAROOQ.*?TOTAL.*?(\d+)/i);
-      const beverlyMatch = text.match(/BEVERLY.*?TOTAL.*?(\d+)/i);
+      const teamGoals = {};
 
-      const alFarooqGoals = alFarooqMatch ? parseInt(alFarooqMatch[1]) : 0;
-      const beverlyGoals = beverlyMatch ? parseInt(beverlyMatch[1]) : 0;
+      // === PRIMARY METHOD: Look for TOTAL rows ===
+      rows.forEach(row => {
+        const teamCell = String(row.Team || '').trim();
+        const goalsCell = String(row.Goals || '').trim();
 
-      console.log("Extracted Goals → Al Farooq:", alFarooqGoals, "| Beverly:", beverlyGoals);
+        if (teamCell.includes('TOTAL')) {
+          let teamName = teamCell.replace(/ FC TOTAL| TOTAL/gi, '').trim();
+          const goals = parseInt(goalsCell, 10) || 0;
 
-      matches.push({
-        id: 1,
-        date: sheet.date,
-        competition: "OutSouth League — Matchday 1",
-        homeTeam: sheet.homeTeam,
-        awayTeam: sheet.awayTeam,
-        homeScore: alFarooqGoals,
-        awayScore: beverlyGoals,
-        location: sheet.location,
-        status: 'FT',
+          if (teamName) {
+            teamGoals[teamName] = goals;
+            console.log(`✅ TOTAL row → ${teamName} ${goals} goals`);
+          }
+        }
       });
+
+      // === FALLBACK: Sum player goals if TOTAL not found ===
+      if (Object.keys(teamGoals).length === 0) {
+        rows.forEach(row => {
+          const teamCell = String(row.Team || '').trim();
+          const goalsCell = String(row.Goals || '').trim();
+          const goals = parseInt(goalsCell, 10) || 0;
+
+          if (teamCell && !teamCell.includes('TOTAL') && teamCell !== 'Team' && goals > 0) {
+            teamGoals[teamCell] = (teamGoals[teamCell] || 0) + goals;
+          }
+        });
+      }
+
+      console.log("✅ Final Team Goals:", teamGoals);
+
+      const homeTeam = sheet.homeTeam;
+      const awayTeam = sheet.awayTeam;
+
+      if (homeTeam && awayTeam) {
+        const match = {
+          id: matches.length + 1,
+          date: sheet.date,
+          competition: `OutSouth League — Matchday ${sheet.matchday || matches.length + 1}`,
+          homeTeam,
+          awayTeam,
+          homeScore: teamGoals[homeTeam] || 0,
+          awayScore: teamGoals[awayTeam] || 0,
+          location: sheet.location,
+          status: 'FT',
+          rows,                    // ← Keep full rows for Results page
+        };
+
+        console.log("✅ Match created:", match);
+        matches.push(match);
+      }
     } catch (err) {
-      console.error(err);
+      console.error(`Error fetching ${sheet.name}:`, err);
     }
   }
 
