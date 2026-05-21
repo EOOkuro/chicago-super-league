@@ -28,15 +28,8 @@ function Footer() {
             
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-4">
-                <a href="#" className="text-[hsl(var(--gray))] hover:text-[hsl(var(--primary))] transition-colors bg-white/5 p-2 rounded-lg" aria-label="Twitch"><Twitch className="w-5 h-5" /></a>
-                <a href="#" className="text-[hsl(var(--gray))] hover:text-[hsl(var(--primary))] transition-colors bg-white/5 p-2 rounded-lg" aria-label="YouTube"><Youtube className="w-5 h-5" /></a>
-              </div>
-              <div className="flex items-center gap-4">
-                <a href="#" className="text-[hsl(var(--gray))] hover:text-[hsl(var(--primary))] transition-colors bg-white/5 p-2 rounded-lg" aria-label="Instagram"><Instagram className="w-5 h-5" /></a>
-                <a href="#" className="text-[hsl(var(--gray))] hover:text-[hsl(var(--primary))] transition-colors bg-white/5 p-2 rounded-lg" aria-label="TikTok"><TikTokIcon className="w-5 h-5" /></a>
-              </div>
-              <div className="flex items-center gap-4">
-                <a href="#" className="text-[hsl(var(--gray))] hover:text-[hsl(var(--primary))] transition-colors bg-white/5 p-2 rounded-lg" aria-label="Facebook"><Facebook className="w-5 h-5" /></a>
+                <a href="https://www.youtube.com/@ChicagoSuperLeague" target="_blank" rel="noopener noreferrer" className="text-[hsl(var(--gray))] hover:text-[hsl(var(--primary))] transition-colors bg-white/5 p-2 rounded-lg" aria-label="YouTube"><Youtube className="w-5 h-5" /></a>
+                <a href="https://www.twitch.tv/chicagosuperleague" target="_blank" rel="noopener noreferrer" className="text-[hsl(var(--gray))] hover:text-[hsl(var(--primary))] transition-colors bg-white/5 p-2 rounded-lg" aria-label="Twitch"><Twitch className="w-5 h-5" /></a>
               </div>
             </div>
           </div>
@@ -72,7 +65,6 @@ function Footer() {
               <li><Link to="/watch" className="text-[hsl(var(--gray))] hover:text-[hsl(var(--true-white))] transition-colors">Watch</Link></li>
               <li><Link to="/youth" className="text-[hsl(var(--gray))] hover:text-[hsl(var(--true-white))] transition-colors">Youth Academy</Link></li>
               <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdYxsjYmVIhkj5YVFWAnFObplET0aFMCPta7zShoeFnx-0o3g/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="text-[hsl(var(--gray))] hover:text-[hsl(var(--true-white))] transition-colors">Register Now</a></li>
-              <li><span className="text-[hsl(var(--gray))]">info@chicagosuperleague.com</span></li>
             </ul>
           </div>
 

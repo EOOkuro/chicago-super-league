@@ -12,10 +12,6 @@ function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[hsl(var(--white))] border border-[hsl(var(--gray))]/20 mb-6 animate-fade-in-up">
-            <span className="w-2 h-2 rounded-full bg-[hsl(var(--primary))] animate-pulse"></span>
-            <span className="text-sm font-bold tracking-wider text-[hsl(var(--gray))] uppercase">Inaugural Season 2025</span>
-          </div>
           
           <h1 className="text-[hsl(var(--black))] mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             WHERE CHAMPIONS <br />
