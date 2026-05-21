@@ -68,65 +68,33 @@ export async function fetchAllMatchData() {
 
   for (const sheet of MATCH_SHEETS) {
     try {
-      const rows = await fetchCSV(sheet.url);
-      console.log(`📊 ${sheet.name} - Total rows:`, rows.length);
+      const res = await fetch(`/api/sheets?url=${encodeURIComponent(sheet.url)}`);
+      const text = await res.text();
+      
+      console.log("Raw CSV preview:", text.substring(0, 500));
 
-      const teamGoals = {};
+      // Extract totals using regex
+      const alFarooqMatch = text.match(/AL FAROOQ.*?TOTAL.*?(\d+)/i);
+      const beverlyMatch = text.match(/BEVERLY.*?TOTAL.*?(\d+)/i);
 
-      rows.forEach(row => {
-        const teamCell = (row.Team || '').trim();
-        const goalsCell = (row.Goals || '').trim();
+      const alFarooqGoals = alFarooqMatch ? parseInt(alFarooqMatch[1]) : 0;
+      const beverlyGoals = beverlyMatch ? parseInt(beverlyMatch[1]) : 0;
 
-        let teamName = '';
-        let goals = 0;
+      console.log("Extracted Goals → Al Farooq:", alFarooqGoals, "| Beverly:", beverlyGoals);
 
-        // Handle TOTAL rows
-        if (teamCell.includes('TOTAL')) {
-          teamName = teamCell.replace(/ FC TOTAL| TOTAL/gi, '').trim();
-          goals = parseInt(goalsCell, 10) || 0;
-        } 
-        // Handle normal player rows
-        else if (teamCell && teamCell !== 'Team') {
-          teamName = teamCell;
-          goals = parseInt(goalsCell, 10) || 0;
-        }
-
-        if (teamName && goals >= 0) {
-          teamGoals[teamName] = (teamGoals[teamName] || 0) + goals;
-        }
+      matches.push({
+        id: 1,
+        date: sheet.date,
+        competition: "OutSouth League — Matchday 1",
+        homeTeam: sheet.homeTeam,
+        awayTeam: sheet.awayTeam,
+        homeScore: alFarooqGoals,
+        awayScore: beverlyGoals,
+        location: sheet.location,
+        status: 'FT',
       });
-
-      console.log("✅ Team Goals Detected:", teamGoals);
-
-      // Use explicit config first, fallback to detected teams
-      let homeTeam = sheet.homeTeam;
-      let awayTeam = sheet.awayTeam;
-
-      if (!homeTeam || !awayTeam) {
-        const detectedTeams = Object.keys(teamGoals);
-        homeTeam = detectedTeams[0];
-        awayTeam = detectedTeams[1];
-      }
-
-      if (homeTeam && awayTeam) {
-        const match = {
-          id: matches.length + 1,
-          date: sheet.date,
-          competition: `OutSouth League — Matchday ${sheet.matchday || matches.length + 1}`,
-          homeTeam,
-          awayTeam,
-          homeScore: teamGoals[homeTeam] || 0,
-          awayScore: teamGoals[awayTeam] || 0,
-          location: sheet.location,
-          status: 'FT',
-          rows,
-        };
-
-        console.log("✅ Match Created:", match);
-        matches.push(match);
-      }
     } catch (err) {
-      console.error(`Error fetching ${sheet.name}:`, err);
+      console.error(err);
     }
   }
 
