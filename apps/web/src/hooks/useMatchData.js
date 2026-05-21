@@ -83,7 +83,7 @@ export async function fetchAllMatchData() {
   }
 
   return matches;
-}s
+}
 
 export function calculateStandings(matches) {
   const table = {};
