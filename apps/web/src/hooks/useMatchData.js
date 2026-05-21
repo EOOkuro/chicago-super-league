@@ -3,7 +3,7 @@ const MATCH_SHEETS = [
     name: 'M1 Beverly FC vs Al Farooq',
     date: 'Sunday May 17 2026',
     location: 'Jackson Park, Bob Pickens Track & Field',
-    url: 'https://docs.google.com/...your-url...',
+    url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSj0B4K0bfnHC2paV8_shhLq6AE0az-7GIvGyVVjicLVRWzNMxPvyL6I7j5xJdSr71YPmo-r-abWpvv/pub?gid=0&single=true&output=csv',
     matchday: 1,
     homeTeam: 'Al Farooq',
     awayTeam: 'Beverly FC',
