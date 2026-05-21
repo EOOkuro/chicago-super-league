@@ -186,7 +186,7 @@ function HomePage() {
               <span className="label-text text-[hsl(var(--primary))] font-bold tracking-widest mb-2 block">
                 OUTSOUTH LEAGUE · OPEN DIVISION
               </span>
-              <h2 className="text-[hsl(var(--black))] m-0 text-4xl md:text-5xl">MATCHDAY 1 FIXTURES</h2>
+              <h2 className="text-[hsl(var(--black))] m-0 text-4xl md:text-5xl">UPCOMING FIXTURES</h2>
             </div>
             <Button asChild variant="outline" className="border-2 border-[hsl(var(--black))] text-[hsl(var(--black))] hover:bg-[hsl(var(--black))] hover:text-[hsl(var(--true-white))] nav-text text-lg px-6">
               <Link to="/fixtures">

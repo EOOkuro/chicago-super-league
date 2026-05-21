@@ -38,7 +38,7 @@ function LeagueStructure() {
           <div className="flex flex-wrap justify-center gap-6 mb-16">
             <div className="flex items-center gap-3">
               <div className="w-4 h-4 rounded-full bg-[hsl(var(--pyramid-green))] shadow-sm"></div>
-              <span className="label-text text-[hsl(var(--black))] font-bold tracking-wider">Launching May 17</span>
+              <span className="label-text text-[hsl(var(--black))] font-bold tracking-wider">Open · Women </span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-4 h-4 rounded-full bg-[hsl(var(--pyramid-yellow))] shadow-sm border border-[hsl(var(--gray))]/20"></div>

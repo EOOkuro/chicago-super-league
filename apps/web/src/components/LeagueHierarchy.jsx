@@ -57,25 +57,25 @@ function LeagueHierarchy() {
         <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative">
           <div className="pyramid-node bg-[hsl(var(--pyramid-green))] text-white shadow-[0_10px_30px_rgba(45,138,45,0.2)] border-2 border-emerald-400">
             <h5 className="text-2xl md:text-3xl tracking-wide m-0">OutSouth League</h5>
-            <span className="pyramid-label text-emerald-100">Launching May 17</span>
+            <span className="pyramid-label text-emerald-100">Womens · Open</span>
           </div>
           <div className="pyramid-node bg-[hsl(var(--pyramid-yellow))] text-[hsl(var(--black))]">
-            <h5 className="text-2xl md:text-3xl tracking-wide m-0">CLASA</h5>
-            <span className="pyramid-label">Coming Soon</span>
+            <h5 className="text-2xl md:text-3xl tracking-wide m-0">Partner</h5>
+            <span className="pyramid-label">Exisiting Chicago League</span>
           </div>
           <div className="pyramid-node bg-[hsl(var(--pyramid-yellow))] text-[hsl(var(--black))]">
             <h5 className="text-2xl md:text-3xl tracking-wide m-0">OutWest League</h5>
             <span className="pyramid-label">Coming Soon</span>
           </div>
           <div className="pyramid-node bg-[hsl(var(--pyramid-yellow))] text-[hsl(var(--black))]">
-            <h5 className="text-2xl md:text-3xl tracking-wide m-0">Windy City League</h5>
-            <span className="pyramid-label">Coming Soon</span>
+            <h5 className="text-2xl md:text-3xl tracking-wide m-0">Partner League</h5>
+            <span className="pyramid-label">Exisiting Chicago League</span>
           </div>
         </motion.div>
 
         {/* Level 4: Sub-Divisions */}
         <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 mt-2">
-          {['OutSouth North', 'OutSouth South', 'Libre Liga', 'LSA', 'OutWest North', 'OutWest South', 'Windy City North', 'Windy City South'].map((league, i) => (
+          {['OutSouth North', 'OutSouth South', 'Partner', 'Partner', 'OutWest North', 'OutWest South', 'Partner', 'Partner'].map((league, i) => (
             <div key={i} className="bg-[hsl(var(--pyramid-white))] text-[hsl(var(--black))] p-3 rounded-lg text-center flex flex-col justify-center min-h-[80px] shadow-sm border border-[hsl(var(--gray))]/20">
               <span className="font-['Bebas_Neue'] text-xl leading-tight">{league}</span>
               <span className="text-[10px] uppercase font-bold text-[hsl(var(--gray))] mt-1 tracking-wider">Partner</span>

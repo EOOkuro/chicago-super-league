@@ -177,12 +177,12 @@ function AboutPage() {
             The vision for the <strong className="text-[hsl(var(--black))]">Chicago Super League (CSL)</strong> was born out of necessity. Despite Chicago's rich soccer culture and massive player base, top-tier amateur talent lacked a unified, professionally operated pyramid.
           </p>
           <p>
-            In collaboration with <strong className="text-[hsl(var(--black))]">Tekkerz LLC</strong>—a dedicated sports management and logistics organization—the framework for a sustainable, competitive ecosystem was designed. Rather than attempting a massive city-wide launch immediately, the founders recognized the need to build a strong foundation first.
+            In collaboration with <strong className="text-[hsl(var(--black))]">MegCity SOccer</strong>—a dedicated sports management and logistics organization—the framework for a sustainable, competitive ecosystem was designed. Rather than attempting a massive city-wide launch immediately, the founders recognized the need to build a strong foundation first.
           </p>
           <div className="p-8 border-l-4 border-[hsl(var(--primary))] bg-[hsl(var(--white))]/30 rounded-r-xl my-10">
             <h3 className="text-2xl text-[hsl(var(--black))] mb-4 font-['Bebas_Neue'] tracking-wide">Enter the OutSouth League</h3>
             <p className="m-0">
-              Launching in Spring 2025, the OutSouth League serves as the inaugural competition and the blueprint for the broader CSL structure. Eight founding clubs stepped forward, representing neighborhoods across the South Side, committing to higher standards of play and organization.
+              Launching in Summer 2026, the OutSouth League serves as the inaugural competition and the blueprint for the broader CSL structure. Eight founding clubs stepped forward, representing neighborhoods across the South Side, committing to higher standards of play and organization.
             </p>
           </div>
           <p>

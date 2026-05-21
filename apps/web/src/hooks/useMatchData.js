@@ -3,7 +3,10 @@ const MATCH_SHEETS = [
     name: 'M1 Beverly FC vs Al Farooq',
     date: 'Sunday May 17 2026',
     location: 'Jackson Park, Bob Pickens Track & Field',
-    url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSj0B4K0bfnHC2paV8_shhLq6AE0az-7GIvGyVVjicLVRWzNMxPvyL6I7j5xJdSr71YPmo-r-abWpvv/pub?gid=0&single=true&output=csv',
+    url: 'https://docs.google.com/...your-url...',
+    matchday: 1,
+    homeTeam: 'Al Farooq',
+    awayTeam: 'Beverly FC',
   },
 ];
 
@@ -38,38 +41,68 @@ async function fetchCSV(url) {
   });
 }
 
+
 export async function fetchAllMatchData() {
   const matches = [];
 
   for (const sheet of MATCH_SHEETS) {
     try {
       const rows = await fetchCSV(sheet.url);
+      console.log(`📊 ${sheet.name} - Total rows:`, rows.length);
+
       const teamGoals = {};
 
-      for (const row of rows) {
-        const team = (row.Team || '').trim();
-        const goals = parseInt(row.Goals, 10) || 0;
+      rows.forEach(row => {
+        const teamCell = (row.Team || '').trim();
+        const goalsCell = (row.Goals || '').trim();
 
-        if (team && !team.includes('TOTAL') && team !== 'Team') {
-          teamGoals[team] = (teamGoals[team] || 0) + goals;
+        let teamName = '';
+        let goals = 0;
+
+        // Handle TOTAL rows
+        if (teamCell.includes('TOTAL')) {
+          teamName = teamCell.replace(/ FC TOTAL| TOTAL/gi, '').trim();
+          goals = parseInt(goalsCell, 10) || 0;
+        } 
+        // Handle normal player rows
+        else if (teamCell && teamCell !== 'Team') {
+          teamName = teamCell;
+          goals = parseInt(goalsCell, 10) || 0;
         }
+
+        if (teamName && goals >= 0) {
+          teamGoals[teamName] = (teamGoals[teamName] || 0) + goals;
+        }
+      });
+
+      console.log("✅ Team Goals Detected:", teamGoals);
+
+      // Use explicit config first, fallback to detected teams
+      let homeTeam = sheet.homeTeam;
+      let awayTeam = sheet.awayTeam;
+
+      if (!homeTeam || !awayTeam) {
+        const detectedTeams = Object.keys(teamGoals);
+        homeTeam = detectedTeams[0];
+        awayTeam = detectedTeams[1];
       }
 
-      const teams = Object.keys(teamGoals);
-
-      if (teams.length >= 2) {
-        matches.push({
+      if (homeTeam && awayTeam) {
+        const match = {
           id: matches.length + 1,
           date: sheet.date,
-          competition: `OutSouth League — Matchday ${matches.length + 1}`,
-          homeTeam: teams[0],
-          awayTeam: teams[1],
-          homeScore: teamGoals[teams[0]],
-          awayScore: teamGoals[teams[1]],
+          competition: `OutSouth League — Matchday ${sheet.matchday || matches.length + 1}`,
+          homeTeam,
+          awayTeam,
+          homeScore: teamGoals[homeTeam] || 0,
+          awayScore: teamGoals[awayTeam] || 0,
           location: sheet.location,
           status: 'FT',
           rows,
-        });
+        };
+
+        console.log("✅ Match Created:", match);
+        matches.push(match);
       }
     } catch (err) {
       console.error(`Error fetching ${sheet.name}:`, err);
