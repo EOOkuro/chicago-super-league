@@ -131,7 +131,7 @@ function HomePage() {
             </div>
             <Button asChild variant="outline" className="border-2 border-[hsl(var(--black))] text-[hsl(var(--black))] hover:bg-[hsl(var(--black))] hover:text-[hsl(var(--true-white))] nav-text text-lg px-6">
               <Link to="/stats">
-                Full Stats <ArrowRight className="ml-2 w-4 h-4" />
+                League Stats <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
           </div>
@@ -190,7 +190,7 @@ function HomePage() {
             </div>
             <Button asChild variant="outline" className="border-2 border-[hsl(var(--black))] text-[hsl(var(--black))] hover:bg-[hsl(var(--black))] hover:text-[hsl(var(--true-white))] nav-text text-lg px-6">
               <Link to="/fixtures">
-                All Fixtures <ArrowRight className="ml-2 w-4 h-4" />
+                Upcoming Fixtures <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
           </div>
