@@ -12,28 +12,21 @@ const MATCH_SHEETS = [
 
 async function fetchCSV(url) {
   const res = await fetch(`/api/sheets?url=${encodeURIComponent(url)}`);
-  if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
+  if (!res.ok) throw new Error(`Failed to fetch sheet: ${res.status}`);
 
   const text = await res.text();
   const lines = text.trim().split('\n').filter(l => l.trim() !== '');
 
-  if (!lines.length) return [];
-
   const separator = lines[0].includes('\t') ? '\t' : ',';
 
-  const rawHeaders = lines[0]
+  const headers = lines[0]
     .split(separator)
     .map(h => h.trim().replace(/^"|"$/g, ''));
 
-  if (!rawHeaders[0]) rawHeaders[0] = 'Jersey';
-
-  const headers = rawHeaders;
+  if (!headers[0]) headers[0] = 'Jersey';
 
   return lines.slice(1).map(line => {
-    const vals = line
-      .split(separator)
-      .map(v => v.trim().replace(/^"|"$/g, ''));
-
+    const vals = line.split(separator).map(v => v.trim().replace(/^"|"$/g, ''));
     return Object.fromEntries(headers.map((h, i) => [h, vals[i] || '']));
   });
 }
@@ -45,38 +38,29 @@ export async function fetchAllMatchData() {
   for (const sheet of MATCH_SHEETS) {
     try {
       const rows = await fetchCSV(sheet.url);
-      console.log(`📊 ${sheet.name} - Rows: ${rows.length}`);
+      console.log(`📊 ${sheet.name} - Rows fetched: ${rows.length}`);
 
       const teamGoals = {};
 
-      rows.forEach((row, index) => {
-        const teamCell = String(row.Team || '').trim();
-        const goalsCell = String(row.Goals || '').trim();
-
-        // Strong TOTAL detection
-        if (teamCell.toUpperCase().includes('TOTAL')) {
-          let teamName = teamCell
+      // Extract goals from TOTAL rows
+      rows.forEach(row => {
+        const teamCell = String(row.Team || '').trim().toUpperCase();
+        
+        if (teamCell.includes('TOTAL')) {
+          let teamName = String(row.Team || '')
             .replace(/ FC TOTAL| TOTAL/gi, '')
             .trim();
 
-          let goals = parseInt(goalsCell, 10) || 0;
+          const goals = parseInt(row.Goals, 10) || 0;
 
-          // Extra fallback if goals not in Goals column
-          if (goals === 0) {
-            const numbers = teamCell.match(/\d+/g);
-            if (numbers && numbers.length > 0) {
-              goals = parseInt(numbers[numbers.length - 1], 10);
-            }
-          }
-
-          if (teamName && goals >= 0) {
+          if (teamName) {
             teamGoals[teamName] = goals;
-            console.log(`✅ TOTAL FOUND → ${teamName} ${goals} goals (row ${index})`);
+            console.log(`✅ TOTAL detected: ${teamName} = ${goals} goals`);
           }
         }
       });
 
-      console.log("✅ Final Team Goals:", teamGoals);
+      console.log("✅ Extracted goals:", teamGoals);
 
       const match = {
         id: matches.length + 1,
@@ -88,18 +72,18 @@ export async function fetchAllMatchData() {
         awayScore: teamGoals[sheet.awayTeam] || 0,
         location: sheet.location,
         status: 'FT',
-        rows,
+        rows: rows,                    // Keep full rows for Results
       };
 
-      console.log("✅ Match created:", match);
+      console.log("✅ Match created successfully");
       matches.push(match);
     } catch (err) {
-      console.error(`Error:`, err);
+      console.error(`Error fetching ${sheet.name}:`, err);
     }
   }
 
   return matches;
-}
+}s
 
 export function calculateStandings(matches) {
   const table = {};
@@ -115,6 +99,7 @@ export function calculateStandings(matches) {
     'GF Chicago SN',
   ];
 
+  // Initialize all clubs
   ALL_CLUBS.forEach((club) => {
     table[club] = {
       club,
@@ -130,48 +115,35 @@ export function calculateStandings(matches) {
     };
   });
 
-  matches.forEach((match) => {
-    const home = match.homeTeam;
-    const away = match.awayTeam;
+  console.log("📊 Calculating standings for", matches.length, "matches");
+
+  matches.forEach((match, i) => {
+    const home = String(match.homeTeam || '').trim();
+    const away = String(match.awayTeam || '').trim();
     const hg = Number(match.homeScore) || 0;
     const ag = Number(match.awayScore) || 0;
 
-    if (!table[home]) {
-      table[home] = {
-        club: home,
-        p: 0,
-        w: 0,
-        d: 0,
-        l: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        pts: 0,
-        form: [],
-      };
-    }
+    console.log(`Match ${i+1}: ${home} ${hg} - ${ag} ${away}`);
 
-    if (!table[away]) {
-      table[away] = {
-        club: away,
-        p: 0,
-        w: 0,
-        d: 0,
-        l: 0,
-        gf: 0,
-        ga: 0,
-        gd: 0,
-        pts: 0,
-        form: [],
-      };
-    }
+    if (!home || !away) return;
+
+    // Ensure both teams exist in table
+    [home, away].forEach(team => {
+      if (!table[team]) {
+        table[team] = {
+          club: team,
+          p: 0, w: 0, d: 0, l: 0,
+          gf: 0, ga: 0, gd: 0, pts: 0,
+          form: [],
+        };
+      }
+    });
 
     table[home].p += 1;
     table[away].p += 1;
 
     table[home].gf += hg;
     table[home].ga += ag;
-
     table[away].gf += ag;
     table[away].ga += hg;
 
@@ -179,43 +151,41 @@ export function calculateStandings(matches) {
       table[home].w += 1;
       table[home].pts += 3;
       table[home].form.push('W');
-
       table[away].l += 1;
       table[away].form.push('L');
     } else if (ag > hg) {
       table[away].w += 1;
       table[away].pts += 3;
       table[away].form.push('W');
-
       table[home].l += 1;
       table[home].form.push('L');
     } else {
       table[home].d += 1;
       table[away].d += 1;
-
       table[home].pts += 1;
       table[away].pts += 1;
-
       table[home].form.push('D');
       table[away].form.push('D');
     }
   });
 
-  return Object.values(table)
+  const finalTable = Object.values(table)
     .map((team) => ({
       ...team,
       gd: team.gf - team.ga,
       form: team.form.slice(-5).join(' ') || '- - - - -',
     }))
-    .sort(
-      (a, b) =>
-        b.pts - a.pts ||
-        b.gd - a.gd ||
-        b.gf - a.gf ||
-        a.club.localeCompare(b.club)
+    .sort((a, b) => 
+      b.pts - a.pts ||
+      b.gd - a.gd ||
+      b.gf - a.gf ||
+      a.club.localeCompare(b.club)
     )
     .map((team, index) => ({
       ...team,
       rank: index + 1,
     }));
+
+  console.log("✅ Final Standings:", finalTable);
+  return finalTable;
 }
