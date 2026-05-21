@@ -93,11 +93,11 @@ function LeagueStructure() {
               <div className="pyramid-tier-label hidden md:block">Tier 3</div>
               <div className="pyramid-node bg-[hsl(var(--pyramid-green))] text-white shadow-[0_10px_30px_rgba(45,138,45,0.3)] border-2 border-emerald-400">
                 <h5 className="text-xl md:text-2xl tracking-wide m-0 text-white">OutSouth League</h5>
-                <span className="pyramid-label text-emerald-100">Launching May 17</span>
+                <span className="pyramid-label text-emerald-100">Open · Women</span>
               </div>
               <div className="pyramid-node bg-[hsl(var(--pyramid-white))] text-[hsl(var(--black))] border border-[hsl(var(--gray))]/30">
                 <h5 className="text-xl md:text-2xl tracking-wide m-0">Partner League</h5>
-                <span className="pyramid-label text-[hsl(var(--gray))]">existing Chicago league</span>
+                <span className="pyramid-label text-[hsl(var(--gray))]">Existing Chicago league</span>
               </div>
               <div className="pyramid-node bg-[hsl(var(--pyramid-yellow))] text-[hsl(var(--black))] shadow-sm">
                 <h5 className="text-xl md:text-2xl tracking-wide m-0">OutWest League</h5>

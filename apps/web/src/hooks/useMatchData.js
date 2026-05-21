@@ -12,33 +12,54 @@ const MATCH_SHEETS = [
 
 async function fetchCSV(url) {
   const res = await fetch(`/api/sheets?url=${encodeURIComponent(url)}`);
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch sheet: ${res.status}`);
-  }
+  if (!res.ok) throw new Error(`Failed to fetch sheet: ${res.status}`);
 
   const text = await res.text();
-  const lines = text.trim().split('\n');
+  const lines = text.trim().split('\n').filter(line => line.trim() !== '');
 
   if (!lines.length) return [];
 
-  const separator = lines[0].includes('\t') ? '\t' : ',';
+  // More robust line splitting - handle missing commas
+  const parseRow = (line) => {
+    // Try normal split first
+    let values = line.split(',').map(v => v.trim().replace(/^"|"$/g, ''));
 
-  const rawHeaders = lines[0]
-    .split(separator)
-    .map((h) => h.trim().replace(/^"|"$/g, ''));
+    // If it looks smashed together, try basic regex split on numbers + text
+    if (values.length < 5) {
+      values = line.match(/(\d+|[A-Za-z\s]+(?: FC TOTAL)?|[A-Za-z0-9\s]+)/g) || [];
+    }
 
-  if (!rawHeaders[0]) rawHeaders[0] = 'Jersey';
+    return values;
+  };
 
-  const headers = rawHeaders;
+  const rows = [];
 
-  return lines.slice(1).map((line) => {
-    const vals = line
-      .split(separator)
-      .map((v) => v.trim().replace(/^"|"$/g, ''));
+  for (let i = 1; i < lines.length; i++) {   // skip header
+    const values = parseRow(lines[i]);
+    const row = {};
 
-    return Object.fromEntries(headers.map((h, i) => [h, vals[i] || '']));
-  });
+    // Map known columns by position or content
+    if (values.length > 2) {
+      row.Number = values[0] || '';
+      row.Player = values[1] || '';
+      row.Team   = values[2] || '';
+      row.Goals  = values[3] || '';
+    }
+
+    // Fallback: search for TOTAL lines
+    if (lines[i].includes('TOTAL')) {
+      const totalMatch = lines[i].match(/(.*?) TOTAL.*?(\d+)/i);
+      if (totalMatch) {
+        row.Team = totalMatch[1].trim();
+        row.Goals = totalMatch[2];
+      }
+    }
+
+    rows.push(row);
+  }
+
+  console.log("Parsed rows sample:", rows.slice(0, 8));
+  return rows;
 }
 
 
