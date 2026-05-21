@@ -1,9 +1,16 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { fetchAllMatchData, calculateStandings } from '../hooks/useMatchData.js';
 
 const DEFAULT_CLUBS = [
-  'Hunnids AC', 'Bronzeville AC', 'Midway FC', 'Pilsen FC', 
-  'Hyde Park Rangers', 'Beverly FC', 'Al Farooq FC', 'South Shore SC'
+  'Al Farooq',
+  'Beverly FC',
+  'Hunnids Athletic Club',
+  'Bronzeville Athletic Club',
+  'Midway FC',
+  'Pilsen FC',
+  'Hyde Park Rangers FC',
+  'GF Chicago SN',
 ];
 
 function StandingsTable({ 

@@ -7,9 +7,9 @@ import { Card, CardContent } from '@/components/ui/card';
 
 function YouthPage() {
   const youthImages = {
-    hero: 'https://res.cloudinary.com/dfpj9filc/image/upload/q_auto/f_auto/v1779386898/IMG_0179_dj42ap.jpg',
+    hero: 'https://res.cloudinary.com/dfpj9filc/image/upload/q_auto/f_auto/v1779390107/74e0a495-1247-44a3-966d-c851f914e784_fbiuya.jpg',
     gallery1: 'https://res.cloudinary.com/dfpj9filc/image/upload/q_auto/f_auto/v1779390010/IMG_0923_klpiaz.heic',
-    philosophy: 'https://res.cloudinary.com/dfpj9filc/image/upload/q_auto/f_auto/v1779390107/74e0a495-1247-44a3-966d-c851f914e784_fbiuya.jpg',
+    philosophy: 'https://res.cloudinary.com/dfpj9filc/image/upload/q_auto/f_auto/v1779386898/IMG_0179_dj42ap.jpg',
   };
 
   const fadeUp = {
