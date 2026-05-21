@@ -49,35 +49,34 @@ export async function fetchAllMatchData() {
 
       const teamGoals = {};
 
-      // Strong parsing for messy CSV
-      rows.forEach(row => {
-        const teamCell = String(row.Team || row[2] || '').trim();   // fallback by position
-        const goalsCell = String(row.Goals || row[3] || '').trim();
+      rows.forEach((row, index) => {
+        const teamCell = String(row.Team || '').trim();
+        const goalsCell = String(row.Goals || '').trim();
 
-        if (teamCell.includes('TOTAL')) {
-          let teamName = teamCell.replace(/ FC TOTAL| TOTAL/gi, '').trim();
-          const goals = parseInt(goalsCell, 10) || parseInt(teamCell.match(/\d+$/)?.[0], 10) || 0;
+        // Strong TOTAL detection
+        if (teamCell.toUpperCase().includes('TOTAL')) {
+          let teamName = teamCell
+            .replace(/ FC TOTAL| TOTAL/gi, '')
+            .trim();
 
-          if (teamName) {
+          let goals = parseInt(goalsCell, 10) || 0;
+
+          // Extra fallback if goals not in Goals column
+          if (goals === 0) {
+            const numbers = teamCell.match(/\d+/g);
+            if (numbers && numbers.length > 0) {
+              goals = parseInt(numbers[numbers.length - 1], 10);
+            }
+          }
+
+          if (teamName && goals >= 0) {
             teamGoals[teamName] = goals;
-            console.log(`✅ TOTAL found: ${teamName} ${goals}`);
+            console.log(`✅ TOTAL FOUND → ${teamName} ${goals} goals (row ${index})`);
           }
         }
       });
 
-      // Fallback: look in raw text if needed
-      if (Object.keys(teamGoals).length < 2) {
-        const res = await fetch(`/api/sheets?url=${encodeURIComponent(sheet.url)}`);
-        const rawText = await res.text();
-        
-        const alMatch = rawText.match(/AL FAROOQ.*?TOTAL.*?(\d+)/i);
-        const bevMatch = rawText.match(/BEVERLY.*?TOTAL.*?(\d+)/i);
-
-        if (alMatch) teamGoals['Al Farooq'] = parseInt(alMatch[1]);
-        if (bevMatch) teamGoals['Beverly FC'] = parseInt(bevMatch[1]);
-      }
-
-      console.log("✅ Final Goals:", teamGoals);
+      console.log("✅ Final Team Goals:", teamGoals);
 
       const match = {
         id: matches.length + 1,
@@ -89,13 +88,13 @@ export async function fetchAllMatchData() {
         awayScore: teamGoals[sheet.awayTeam] || 0,
         location: sheet.location,
         status: 'FT',
-        rows,                    // Keep for Results page
+        rows,
       };
 
       console.log("✅ Match created:", match);
       matches.push(match);
     } catch (err) {
-      console.error(`Error in ${sheet.name}:`, err);
+      console.error(`Error:`, err);
     }
   }
 
