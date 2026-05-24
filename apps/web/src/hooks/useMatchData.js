@@ -99,6 +99,54 @@ function extractTeamGoals(rows) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Public: fetch player-level goals + assists from all match sheets
+// Returns an array of { player, team, jersey, goals, assists, named }
+// TBD players are returned as "#6" etc. and shown with their team in the UI.
+// ─────────────────────────────────────────────────────────────────────────────
+export async function fetchAllPlayerStats() {
+  const playerMap = {};
+
+  for (const sheet of MATCH_SHEETS) {
+    try {
+      const url  = buildSheetUrl(sheet.sheetName);
+      const rows = await fetchCSV(url);
+
+      rows.forEach(row => {
+        const playerCell = String(row.Player || '').trim();
+        const teamCell   = String(row.Team   || '').trim();
+
+        // Skip TOTAL rows
+        if (/\bTOTAL$/i.test(playerCell) || /\bTOTAL$/i.test(teamCell)) return;
+        // Skip rows with no team (spacer / empty rows)
+        if (!teamCell) return;
+
+        const goals   = parseInt(row.Goals   || '0', 10);
+        const assists = parseInt(row.Assists  || '0', 10);
+        const jersey  = String(row.Number || row.Jersey || '').trim();
+
+        // Build a display name; skip rows that are completely anonymous
+        const isNamed     = playerCell && playerCell.toUpperCase() !== 'TBD';
+        const displayName = isNamed ? playerCell : jersey ? `#${jersey}` : null;
+        if (!displayName) return;
+
+        // Aggregate across multiple match sheets by name + team
+        const key = `${displayName}||${teamCell}`;
+        if (!playerMap[key]) {
+          playerMap[key] = { player: displayName, team: teamCell, jersey, goals: 0, assists: 0, named: isNamed };
+        }
+
+        playerMap[key].goals   += goals;
+        playerMap[key].assists += assists;
+      });
+    } catch (err) {
+      console.error(`❌ Error fetching player stats from ${sheet.name}:`, err);
+    }
+  }
+
+  return Object.values(playerMap);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Public: fetch all match sheets and return structured match objects
 // ─────────────────────────────────────────────────────────────────────────────
 export async function fetchAllMatchData() {
