@@ -16,7 +16,13 @@ function WatchPage() {
     <div className="bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>Watch Live | Chicago Super League</title>
-        <meta name="description" content="Watch Chicago Super League matches live. Stream elite amateur soccer directly from your device." />
+        <meta name="description" content="Stream OutSouth League matches live on Twitch. Never miss a kick — watch competitive South Side Chicago soccer from anywhere." />
+        <link rel="canonical" href="https://chicagosuperleague.com/watch" />
+        <meta property="og:title" content="Watch Live | Chicago Super League" />
+        <meta property="og:description" content="Stream OutSouth League matches live on Twitch. Never miss a kick — watch competitive South Side Chicago soccer from anywhere." />
+        <meta property="og:url" content="https://chicagosuperleague.com/watch" />
+        <meta name="twitter:title" content="Watch Live | Chicago Super League" />
+        <meta name="twitter:description" content="Stream OutSouth League matches live on Twitch. Never miss a kick — watch competitive South Side Chicago soccer from anywhere." />
       </Helmet>
 
       {/* Hero Section */}

@@ -67,7 +67,13 @@ function LeaguePage() {
     <div className="pt-32 pb-24 bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>{`${leagueInfo.name} | ${divisionName} | Chicago Super League`}</title>
-        <meta name="description" content={`View standings and information for the ${leagueInfo.name} in the Chicago Super League.`} />
+        <meta name="description" content={`View standings, fixtures, and information for the ${leagueInfo.name} ${divisionName} in the Chicago Super League.`} />
+        <link rel="canonical" href={`https://chicagosuperleague.com/league/${leagueName}`} />
+        <meta property="og:title" content={`${leagueInfo.name} | ${divisionName} | Chicago Super League`} />
+        <meta property="og:description" content={`View standings, fixtures, and information for the ${leagueInfo.name} ${divisionName} in the Chicago Super League.`} />
+        <meta property="og:url" content={`https://chicagosuperleague.com/league/${leagueName}`} />
+        <meta name="twitter:title" content={`${leagueInfo.name} | ${divisionName} | Chicago Super League`} />
+        <meta name="twitter:description" content={`View standings, fixtures, and information for the ${leagueInfo.name} ${divisionName} in the Chicago Super League.`} />
       </Helmet>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

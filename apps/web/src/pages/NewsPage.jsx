@@ -24,7 +24,13 @@ function NewsPage() {
     <div className="bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>Latest News | Chicago Super League</title>
-        <meta name="description" content="Read the latest news, updates, and articles from the Chicago Super League." />
+        <meta name="description" content="Official news, match reports, and updates from the Chicago Super League and OutSouth League." />
+        <link rel="canonical" href="https://chicagosuperleague.com/news" />
+        <meta property="og:title" content="Latest News | Chicago Super League" />
+        <meta property="og:description" content="Official news, match reports, and updates from the Chicago Super League and OutSouth League." />
+        <meta property="og:url" content="https://chicagosuperleague.com/news" />
+        <meta name="twitter:title" content="Latest News | Chicago Super League" />
+        <meta name="twitter:description" content="Official news, match reports, and updates from the Chicago Super League and OutSouth League." />
       </Helmet>
 
       {/* Hero Section */}

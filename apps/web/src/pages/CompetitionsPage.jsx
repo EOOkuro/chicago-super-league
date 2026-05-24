@@ -50,6 +50,13 @@ function CompetitionsPage() {
     <div className="min-h-[100dvh] pt-24 md:pt-32 pb-24 bg-[hsl(var(--background))]">
       <Helmet>
         <title>Competitions | Chicago Super League</title>
+        <meta name="description" content="Browse all competitions in the Chicago Super League ecosystem — from the active OutSouth League to upcoming divisions across the city." />
+        <link rel="canonical" href="https://chicagosuperleague.com/competitions" />
+        <meta property="og:title" content="Competitions | Chicago Super League" />
+        <meta property="og:description" content="Browse all competitions in the Chicago Super League ecosystem — from the active OutSouth League to upcoming divisions across the city." />
+        <meta property="og:url" content="https://chicagosuperleague.com/competitions" />
+        <meta name="twitter:title" content="Competitions | Chicago Super League" />
+        <meta name="twitter:description" content="Browse all competitions in the Chicago Super League ecosystem — from the active OutSouth League to upcoming divisions across the city." />
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

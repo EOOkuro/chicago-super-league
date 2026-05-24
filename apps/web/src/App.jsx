@@ -35,7 +35,17 @@ function App() {
       <div className="min-h-screen bg-[hsl(var(--background))] flex flex-col">
         <Helmet>
           <title>Chicago Super League | Where Champions Rise</title>
-          <meta name="description" content="The premier competitive soccer league in Chicago. Bringing together diverse neighborhoods and fostering competitive excellence." />
+          <meta name="description" content="The premier competitive soccer league in Chicago. South Side soccer bringing together diverse neighborhoods through culture, competition, and excellence." />
+          <meta name="robots" content="index, follow" />
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Chicago Super League" />
+          <meta property="og:image" content="https://img.youtube.com/vi/cEqNLFv5x1E/maxresdefault.jpg" />
+          <meta property="og:image:width" content="1280" />
+          <meta property="og:image:height" content="720" />
+          <meta property="og:image:alt" content="Chicago Super League — Where Champions Rise" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:image" content="https://img.youtube.com/vi/cEqNLFv5x1E/maxresdefault.jpg" />
+          <meta name="twitter:image:alt" content="Chicago Super League — Where Champions Rise" />
         </Helmet>
 
         <Header />

@@ -42,7 +42,13 @@ function ContactPage() {
     <div className="pt-32 pb-24 bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>Contact Us | Chicago Super League</title>
-        <meta name="description" content="Get in touch with the Chicago Super League team." />
+        <meta name="description" content="Get in touch with the Chicago Super League team — questions about joining, sponsorships, or anything else. We're here to help." />
+        <link rel="canonical" href="https://chicagosuperleague.com/contact" />
+        <meta property="og:title" content="Contact Us | Chicago Super League" />
+        <meta property="og:description" content="Get in touch with the Chicago Super League team — questions about joining, sponsorships, or anything else. We're here to help." />
+        <meta property="og:url" content="https://chicagosuperleague.com/contact" />
+        <meta name="twitter:title" content="Contact Us | Chicago Super League" />
+        <meta name="twitter:description" content="Get in touch with the Chicago Super League team — questions about joining, sponsorships, or anything else. We're here to help." />
       </Helmet>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

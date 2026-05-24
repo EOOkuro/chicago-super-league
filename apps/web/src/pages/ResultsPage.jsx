@@ -22,7 +22,13 @@ function ResultsPage() {
     <div className="bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>Match Results | Chicago Super League</title>
-        <meta name="description" content="Latest match results and scores from the Chicago Super League." />
+        <meta name="description" content="Latest match results and scores from the OutSouth League Season 1. Full-time scores, match reports, and completed fixture details." />
+        <link rel="canonical" href="https://chicagosuperleague.com/results" />
+        <meta property="og:title" content="Match Results | Chicago Super League" />
+        <meta property="og:description" content="Latest match results and scores from the OutSouth League Season 1. Full-time scores, match reports, and completed fixture details." />
+        <meta property="og:url" content="https://chicagosuperleague.com/results" />
+        <meta name="twitter:title" content="Match Results | Chicago Super League" />
+        <meta name="twitter:description" content="Latest match results and scores from the OutSouth League Season 1. Full-time scores, match reports, and completed fixture details." />
       </Helmet>
 
       <section className="pt-32 pb-16 bg-[hsl(var(--black))] text-[hsl(var(--true-white))] border-b-4 border-[hsl(var(--primary))]">

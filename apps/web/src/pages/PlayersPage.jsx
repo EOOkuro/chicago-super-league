@@ -66,7 +66,13 @@ function PlayersPage() {
     <div className="pt-32 pb-24 bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>Player Registry | Chicago Super League</title>
-        <meta name="description" content="Official player registry and statistics for the Chicago Super League ecosystem." />
+        <meta name="description" content="Official player registry for the Chicago Super League. Browse stats, positions, and club affiliations for all registered OutSouth League players." />
+        <link rel="canonical" href="https://chicagosuperleague.com/players" />
+        <meta property="og:title" content="Player Registry | Chicago Super League" />
+        <meta property="og:description" content="Official player registry for the Chicago Super League. Browse stats, positions, and club affiliations for all registered OutSouth League players." />
+        <meta property="og:url" content="https://chicagosuperleague.com/players" />
+        <meta name="twitter:title" content="Player Registry | Chicago Super League" />
+        <meta name="twitter:description" content="Official player registry for the Chicago Super League. Browse stats, positions, and club affiliations for all registered OutSouth League players." />
       </Helmet>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

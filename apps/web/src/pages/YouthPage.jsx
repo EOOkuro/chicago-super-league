@@ -25,10 +25,13 @@ function YouthPage() {
     <div className="bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>Youth Division | MegCity Soccer</title>
-        <meta
-          name="description"
-          content="MegCity Soccer's youth division gives South Side kids ages 2–18 a structured, joyful, development-first environment to fall in love with the game."
-        />
+        <meta name="description" content="MegCity Soccer's youth division gives South Side kids ages 2–18 a structured, joyful, development-first environment to fall in love with the game." />
+        <link rel="canonical" href="https://chicagosuperleague.com/youth" />
+        <meta property="og:title" content="Youth Division | MegCity Soccer" />
+        <meta property="og:description" content="MegCity Soccer's youth division gives South Side kids ages 2–18 a structured, joyful, development-first environment to fall in love with the game." />
+        <meta property="og:url" content="https://chicagosuperleague.com/youth" />
+        <meta name="twitter:title" content="Youth Division | MegCity Soccer" />
+        <meta name="twitter:description" content="MegCity Soccer's youth division gives South Side kids ages 2–18 a structured, joyful, development-first environment to fall in love with the game." />
       </Helmet>
 
       {/* Hero */}

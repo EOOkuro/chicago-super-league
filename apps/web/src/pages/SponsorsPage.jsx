@@ -9,7 +9,13 @@ function SponsorsPage() {
     <div className="pt-32 pb-24 bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>Sponsors | Chicago Super League</title>
-        <meta name="description" content="Partner with the Chicago Super League and invest in the South Side." />
+        <meta name="description" content="Partner with the Chicago Super League. Invest in South Side Chicago soccer and reach a passionate, growing community audience." />
+        <link rel="canonical" href="https://chicagosuperleague.com/sponsors" />
+        <meta property="og:title" content="Sponsors | Chicago Super League" />
+        <meta property="og:description" content="Partner with the Chicago Super League. Invest in South Side Chicago soccer and reach a passionate, growing community audience." />
+        <meta property="og:url" content="https://chicagosuperleague.com/sponsors" />
+        <meta name="twitter:title" content="Sponsors | Chicago Super League" />
+        <meta name="twitter:description" content="Partner with the Chicago Super League. Invest in South Side Chicago soccer and reach a passionate, growing community audience." />
       </Helmet>
 
       {/* Hero Section */}

@@ -21,7 +21,13 @@ function AboutPage() {
     <div className="bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>About | Chicago Super League</title>
-        <meta name="description" content="The story, mission, and structure of the Chicago Super League." />
+        <meta name="description" content="The story, mission, and structure behind the Chicago Super League — building Chicago's pro/rel soccer pyramid from the South Side up." />
+        <link rel="canonical" href="https://chicagosuperleague.com/about" />
+        <meta property="og:title" content="About | Chicago Super League" />
+        <meta property="og:description" content="The story, mission, and structure behind the Chicago Super League — building Chicago's pro/rel soccer pyramid from the South Side up." />
+        <meta property="og:url" content="https://chicagosuperleague.com/about" />
+        <meta name="twitter:title" content="About | Chicago Super League" />
+        <meta name="twitter:description" content="The story, mission, and structure behind the Chicago Super League — building Chicago's pro/rel soccer pyramid from the South Side up." />
       </Helmet>
 
       {/* 1. Hero Section */}

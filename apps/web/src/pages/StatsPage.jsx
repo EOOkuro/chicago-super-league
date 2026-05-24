@@ -8,7 +8,13 @@ function StatsPage() {
     <div className="bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>League Stats | Chicago Super League</title>
-        <meta name="description" content="Top scorers and assists for the OutSouth League." />
+        <meta name="description" content="Top scorers, assist leaders, and full statistics for the OutSouth League Season 1. Updated after every match day." />
+        <link rel="canonical" href="https://chicagosuperleague.com/stats" />
+        <meta property="og:title" content="League Stats | Chicago Super League" />
+        <meta property="og:description" content="Top scorers, assist leaders, and full statistics for the OutSouth League Season 1. Updated after every match day." />
+        <meta property="og:url" content="https://chicagosuperleague.com/stats" />
+        <meta name="twitter:title" content="League Stats | Chicago Super League" />
+        <meta name="twitter:description" content="Top scorers, assist leaders, and full statistics for the OutSouth League Season 1. Updated after every match day." />
       </Helmet>
 
       {/* Hero Section */}

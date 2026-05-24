@@ -37,7 +37,13 @@ function HomePage() {
     <>
       <Helmet>
         <title>Chicago Super League | Where Champions Rise</title>
-        <meta name="description" content="The premier competitive soccer league in Chicago. Bringing together diverse neighborhoods and fostering competitive excellence." />
+        <meta name="description" content="The premier competitive soccer league in Chicago. South Side soccer bringing together diverse neighborhoods through culture, competition, and excellence." />
+        <link rel="canonical" href="https://chicagosuperleague.com/" />
+        <meta property="og:title" content="Chicago Super League | Where Champions Rise" />
+        <meta property="og:description" content="The premier competitive soccer league in Chicago. South Side soccer bringing together diverse neighborhoods through culture, competition, and excellence." />
+        <meta property="og:url" content="https://chicagosuperleague.com/" />
+        <meta name="twitter:title" content="Chicago Super League | Where Champions Rise" />
+        <meta name="twitter:description" content="The premier competitive soccer league in Chicago. South Side soccer bringing together diverse neighborhoods through culture, competition, and excellence." />
       </Helmet>
       
       <div className="relative">

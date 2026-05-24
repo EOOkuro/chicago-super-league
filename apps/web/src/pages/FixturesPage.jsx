@@ -87,7 +87,13 @@ function FixturesPage() {
     <div className="pt-32 pb-24 bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>Fixtures | Chicago Super League</title>
-        <meta name="description" content="OutSouth League Season 1 Fixtures and Match Days." />
+        <meta name="description" content="OutSouth League Season 1 full fixture list. Upcoming match days, kickoff times, and venues across the South Side." />
+        <link rel="canonical" href="https://chicagosuperleague.com/fixtures" />
+        <meta property="og:title" content="Fixtures | Chicago Super League" />
+        <meta property="og:description" content="OutSouth League Season 1 full fixture list. Upcoming match days, kickoff times, and venues across the South Side." />
+        <meta property="og:url" content="https://chicagosuperleague.com/fixtures" />
+        <meta name="twitter:title" content="Fixtures | Chicago Super League" />
+        <meta name="twitter:description" content="OutSouth League Season 1 full fixture list. Upcoming match days, kickoff times, and venues across the South Side." />
       </Helmet>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

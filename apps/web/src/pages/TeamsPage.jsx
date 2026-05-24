@@ -7,7 +7,13 @@ function TeamsPage() {
     <div className="pt-20 bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>Teams | Chicago Super League</title>
-        <meta name="description" content="Meet the founding clubs and teams of the Chicago Super League." />
+        <meta name="description" content="Meet the founding clubs of the Chicago Super League — representing South Side neighborhoods competing in the OutSouth League." />
+        <link rel="canonical" href="https://chicagosuperleague.com/teams" />
+        <meta property="og:title" content="Teams | Chicago Super League" />
+        <meta property="og:description" content="Meet the founding clubs of the Chicago Super League — representing South Side neighborhoods competing in the OutSouth League." />
+        <meta property="og:url" content="https://chicagosuperleague.com/teams" />
+        <meta name="twitter:title" content="Teams | Chicago Super League" />
+        <meta name="twitter:description" content="Meet the founding clubs of the Chicago Super League — representing South Side neighborhoods competing in the OutSouth League." />
       </Helmet>
       
       <ClubsSection />
