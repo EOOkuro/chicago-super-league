@@ -15,16 +15,11 @@ import MatchCard from '../components/MatchCard.jsx';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useSubstackFeed } from '../hooks/useSubstackFeed.js';
+import { useFixtures } from '../hooks/useFixtures.js';
 
 function HomePage() {
   const { news, loading } = useSubstackFeed();
-
-  const matchdayFixtures = [
-    { match: 'Hyde Park Rangers FC vs Al Farooq', date: 'Sunday, May 17, 2025', location: 'Jackson Park' },
-    { match: 'Bronzeville Athletic Club vs GF.Chicago.SN', date: 'Sunday, May 17, 2025', location: 'De La Salle' },
-    { match: 'Beverly FC vs Pilsen FC', date: 'Sunday, May 17, 2025', location: 'Comed' },
-    { match: 'Midway FC vs Hunnids Athletic Club', date: 'Sunday, May 17, 2025', location: 'West Lawn' }
-  ];
+  const { next: nextMatchday, loading: fixturesLoading } = useFixtures();
 
   const recentResults = [
     { id: 1, date: 'May 10, 2025', homeTeam: 'Hunnids AC', awayTeam: 'Midway FC', homeScore: 2, awayScore: 1, status: 'FT' },
@@ -184,7 +179,7 @@ function HomePage() {
         </div>
       </section>
       
-      {/* Matchday 1 Fixtures Section */}
+      {/* Upcoming Fixtures Section */}
       <section className="py-20 bg-[hsl(var(--light-bg))] border-t border-[hsl(var(--white))]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
@@ -192,20 +187,45 @@ function HomePage() {
               <span className="label-text text-[hsl(var(--primary))] font-bold tracking-widest mb-2 block">
                 OUTSOUTH LEAGUE · OPEN DIVISION
               </span>
-              <h2 className="text-[hsl(var(--black))] m-0 text-4xl md:text-5xl">UPCOMING FIXTURES</h2>
+              <h2 className="text-[hsl(var(--black))] m-0 text-4xl md:text-5xl">
+                {nextMatchday ? nextMatchday.title : 'UPCOMING FIXTURES'}
+              </h2>
+              {nextMatchday && (
+                <p className="label-text text-[hsl(var(--gray))] tracking-widest mt-1">{nextMatchday.date}</p>
+              )}
             </div>
             <Button asChild variant="outline" className="border-2 border-[hsl(var(--black))] text-[hsl(var(--black))] hover:bg-[hsl(var(--black))] hover:text-[hsl(var(--true-white))] nav-text text-lg px-6">
               <Link to="/fixtures">
-                Upcoming Fixtures <ArrowRight className="ml-2 w-4 h-4" />
+                All Fixtures <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {matchdayFixtures.map((fixture, index) => (
-              <MatchCard key={index} match={fixture.match} date={fixture.date} location={fixture.location} />
-            ))}
-          </div>
+
+          {fixturesLoading && (
+            <div className="flex justify-center py-12">
+              <div className="w-8 h-8 border-4 border-[hsl(var(--primary))] border-t-transparent rounded-full animate-spin" />
+            </div>
+          )}
+
+          {!fixturesLoading && nextMatchday && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {nextMatchday.matches.map((fixture, index) => (
+                <MatchCard
+                  key={index}
+                  match={`${fixture.home} vs ${fixture.away}`}
+                  date={nextMatchday.date}
+                  location={fixture.location}
+                />
+              ))}
+            </div>
+          )}
+
+          {!fixturesLoading && !nextMatchday && (
+            <div className="text-center py-12 text-[hsl(var(--gray))]">
+              <p className="font-['Bebas_Neue'] text-2xl mb-2">Season Complete</p>
+              <p className="text-sm">All matchdays have been played. Stay tuned for next season!</p>
+            </div>
+          )}
         </div>
       </section>
 
