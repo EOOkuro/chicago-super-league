@@ -58,7 +58,7 @@ function get(properties, variants) {
 function mapPage(page) {
   const p = page.properties;
 
-  const name   = get(p, ['Name', 'Player', 'Player Name', 'Full Name']);
+  const name   = get(p, ['Player Name', 'Name', 'Player', 'Full Name']);
   const number = get(p, ['Number', 'Jersey', 'Jersey #', '#', 'Kit Number', 'Jersey Number']);
   const goals  = get(p, ['Goals', 'G', 'Goal']);
   const assists= get(p, ['Assists', 'A', 'Ast', 'Assist']);
@@ -114,7 +114,7 @@ export default async function handler(req, res) {
           'Notion-Version': NOTION_VERSION,
         },
         body: JSON.stringify({
-          sorts: [{ property: 'Name', direction: 'ascending' }],
+          sorts: [{ property: 'Player Name', direction: 'ascending' }],
           page_size: 100,
         }),
       }
@@ -130,7 +130,8 @@ export default async function handler(req, res) {
     const players = data.results
       .filter(page => !page.archived)
       .map(mapPage)
-      .filter(p => p.name && p.name !== 'Unknown');
+      .filter(p => p.name && p.name !== 'Unknown')
+      .sort((a, b) => a.name.localeCompare(b.name));
 
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
