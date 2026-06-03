@@ -26,6 +26,16 @@ const MATCH_SHEETS = [
     homeTeam: 'Al Farooq',
     awayTeam: 'Beverly FC',
   },
+
+  {
+    name: 'M6 Pilsen FC vs Al Farooq',
+    sheetName: 'M6 Pilsen FC vs Al Farooq',
+    date: 'Sunday May 31 2026',
+    location: 'Jackson Park',
+    matchday: 6,
+    homeTeam: 'Al Farooq',
+    awayTeam: 'Pilsen FC',
+  },
   // Add future matches below as results come in:
   // {
   //   name: 'M1 Bronzeville AC vs GF Chicago SN',
