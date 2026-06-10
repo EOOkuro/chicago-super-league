@@ -1,73 +1,81 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
 
 function Hero() {
   return (
-    <section
-  id="home"
-  className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden min-h-[90vh] flex items-center"
->
-  {/* Background Video */}
-  <div className="absolute inset-0 z-0 overflow-hidden">
-    <iframe
-      src="https://www.youtube.com/embed/cEqNLFv5x1E?autoplay=1&mute=1&controls=0&loop=1&playlist=cEqNLFv5x1E&modestbranding=1&playsinline=1&rel=0"
-      title="OutSouth League Matchday 1"
-      className="absolute top-1/2 left-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-      allow="autoplay; encrypted-media"
-    />
-  </div>
+    <section className="relative h-screen overflow-hidden">
 
-  {/* Dark Overlay */}
-  <div className="absolute inset-0 bg-black/70 z-10"></div>
-
-  {/* Content */}
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-    <div className="max-w-4xl">
-      <h1
-        className="text-white mb-6 animate-fade-in-up"
-        style={{ animationDelay: '0.1s' }}
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
       >
-        WHERE CHAMPIONS <br />
-        <span className="text-[hsl(var(--primary))]">RISE</span>
-      </h1>
+        <source
+          src="https://res.cloudinary.com/dfpj9filc/video/upload/v1781052477/IMG_0742_xb8byq.mov"
+          type="video/mp4"
+        />
+      </video>
 
-      <p
-        className="text-xl md:text-2xl text-white/85 mb-10 max-w-2xl animate-fade-in-up"
-        style={{ animationDelay: '0.2s' }}
-      >
-        OutSouth League — South Side soccer bringing together diverse
-        neighborhoods through culture, competition, and competitive excellence.
-        The beginning of Chicago’s pro/rel pyramid.
-      </p>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/70"></div>
 
-      <div
-        className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
-        style={{ animationDelay: '0.3s' }}
-      >
-        <Button
-          asChild
-          className="bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary-dark))] text-white nav-text text-xl px-8 py-6 h-auto"
-        >
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdYxsjYmVIhkj5YVFWAnFObplET0aFMCPta7zShoeFnx-0o3g/viewform?usp=header"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Register Now <ArrowRight className="ml-2 w-5 h-5" />
-          </a>
-        </Button>
+      {/* Hero Content */}
+      <div className="relative z-10 h-full flex items-center justify-center">
 
-        <Button
-          variant="outline"
-          className="border-2 border-white text-white hover:bg-white hover:text-black nav-text text-xl px-8 py-6 h-auto"
-        >
-          Explore Clubs
-        </Button>
+        <div className="text-center px-4 max-w-6xl mx-auto">
+
+          {/* League Label */}
+          <span className="label-text text-[hsl(var(--primary-light))] font-bold tracking-[0.3em] mb-6 block uppercase">
+            Chicago Super League · Open Division
+          </span>
+
+          {/* Match */}
+          <h1 className="font-['Bebas_Neue'] text-6xl md:text-8xl lg:text-9xl leading-none text-white mb-6">
+            PILSEN FC
+            <br />
+            <span className="text-[hsl(var(--primary))]">VS</span>
+            <br />
+            HYDE PARK RANGERS FC
+          </h1>
+
+          {/* Match Info */}
+          <div className="space-y-2 mb-10">
+            <p className="text-xl md:text-3xl text-white uppercase tracking-widest">
+              June 14, 2026
+            </p>
+
+            <p className="text-lg md:text-2xl text-[hsl(var(--gray))] uppercase tracking-[0.2em]">
+              ComEd Recreation Center
+            </p>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+            <Button
+              size="lg"
+              className="bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary-dark))] text-white nav-text text-lg px-8 py-6"
+            >
+              Watch Live
+            </Button>
+
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 border-white text-white hover:bg-white hover:text-black nav-text text-lg px-8 py-6"
+            >
+              View Fixtures
+            </Button>
+
+          </div>
+
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+
+    </section>
   );
 }
 

@@ -150,7 +150,7 @@ function HomePage() {
           </p>
 
           <p className="text-lg text-[hsl(var(--gray))] mb-8">
-            ComEd Recreation Center
+           
           </p>
 
           <Button
