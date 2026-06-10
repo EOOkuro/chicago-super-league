@@ -3,12 +3,12 @@ import ClubCard from './ClubCard.jsx';
 
 function ClubsSection() {
   const clubs = [
-    { name: 'Hunnids AC', location: 'South Side', logo:},
+    { name: 'Hunnids AC', location: 'South Side'},
     { name: 'Bronzeville AC', location: 'South Side' },
     { name: 'Midway FC', location: 'South Side' },
     { name: 'Pilsen FC', location: 'South Side' },
     { name: 'Hyde Park Rangers', location: 'South Side' },
-    { name: 'Beverly FC', location: 'South Side'},
+    { name: 'Beverly FC', location: 'South Side' },
     { name: 'Al Farooq FC', location: 'South Side' },
     { name: 'GF.Chicago.SN', location: 'South Side' }
   ];
