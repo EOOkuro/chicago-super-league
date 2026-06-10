@@ -6,7 +6,7 @@ function ClubsSection() {
     { name: 'Hunnids AC', location: 'South Side'},
     { name: 'Bronzeville AC', location: 'South Side' },
     { name: 'Midway FC', location: 'South Side' },
-    { name: 'Pilsen FC', location: 'South Side' },
+    { name: 'Pilsen FC', location: 'South Side', logo: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1781027089/Signature__8Go6IybUUoK5JYPylWzcMjFFa2FQs6rsJq7ndWNNOqvRx1IqoKQtQXgwiwMzWu2v0SbBsRf67B0kGgR52ZrVvXu5Lq_BR96eT0N9XCMwY87xB8nr6nBZfa9sLYlbXUphwd9guwCpjk05k2ly9J6P4oObvUa_OBQcDR4uUM9zlGUYyS54y08OL9PCgW4a1pd3g98zOD6zJBd_aaqb3l.png' },
     { name: 'Hyde Park Rangers', location: 'South Side', logo: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1781027195/IMG_0095_1_luswdi.png' },
     { name: 'Beverly FC', location: 'South Side', logo: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1781027245/209b06adf739c0419ebb82b952b3ddbf_2_-jukebox-bg-removed_wgiywf.png' },
     { name: 'Al Farooq FC', location: 'South Side', logo: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1781027101/Image-1_1_-jukebox-bg-removed_rs6ks7.png' },
