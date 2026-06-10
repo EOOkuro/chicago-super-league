@@ -1,215 +1,290 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Loader, AlertCircle, MapPin, Clock } from 'lucide-react';
-import { useFixtures } from '../hooks/useFixtures.js';
 
-// ─── Individual match card ────────────────────────────────────────────────────
-function MatchRow({ match, played }) {
-  return (
-    <div
-      className={`flex flex-col sm:flex-row justify-between items-center gap-4 p-5 rounded-xl border transition-all duration-300
-        ${played
-          ? 'bg-[hsl(var(--light-bg))] border-[hsl(var(--white))] opacity-60'
-          : 'bg-[hsl(var(--true-white))] border-[hsl(var(--white))] shadow-sm hover:shadow-md'
-        }`}
-    >
-      {/* Home */}
-      <div className="font-['Bebas_Neue'] text-2xl md:text-3xl text-[hsl(var(--black))] text-center sm:text-right flex-1 leading-none">
-        {match.home}
-      </div>
+import Hero from '../components/Hero.jsx';
+import Ticker from '../components/Ticker.jsx';
+import KickoffBanner from '../components/KickoffBanner.jsx';
+import ClubsSection from '../components/ClubsSection.jsx';
+import StandingsTable from '../components/StandingsTable.jsx';
+import LeagueStructure from '../components/LeagueStructure.jsx';
+import SponsorsSection from '../components/SponsorsSection.jsx';
+import JoinCTA from '../components/JoinCTA.jsx';
+import MatchCard from '../components/MatchCard.jsx';
 
-      {/* VS pill */}
-      <div className={`px-3 py-1 rounded font-bold text-sm shrink-0
-        ${played ? 'bg-[hsl(var(--white))] text-[hsl(var(--gray))]' : 'bg-[hsl(var(--light-bg))] text-[hsl(var(--gray))]'}`}>
-        VS
-      </div>
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
-      {/* Away */}
-      <div className="font-['Bebas_Neue'] text-2xl md:text-3xl text-[hsl(var(--black))] text-center sm:text-left flex-1 leading-none">
-        {match.away}
-      </div>
+import { useSubstackFeed } from '../hooks/useSubstackFeed.js';
 
-      {/* Meta */}
-      <div className="flex flex-col sm:flex-row items-center gap-3 text-xs label-text text-[hsl(var(--gray))] tracking-wider shrink-0 sm:pl-4 sm:border-l border-[hsl(var(--white))]">
-        {match.location && (
-          <span className="flex items-center gap-1">
-            <MapPin className="w-3 h-3" /> {match.location}
-          </span>
-        )}
-        {match.time && (
-          <span className="flex items-center gap-1">
-            <Clock className="w-3 h-3" /> {match.time}
-          </span>
-        )}
-      </div>
-    </div>
-  );
-}
+function HomePage() {
+  const { news, loading } = useSubstackFeed();
 
-// ─── One matchday block ───────────────────────────────────────────────────────
-function MatchdayBlock({ md, index, isNext }) {
-  return (
-    <motion.div
-      key={md.id}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, delay: index * 0.07 }}
-      className="relative"
-    >
-      {/* Matchday header */}
-      <div className="flex flex-col items-center mb-6">
-        <div className="flex items-center gap-3 mb-1">
-          <h2 className={`text-4xl md:text-5xl m-0 ${md.played ? 'text-[hsl(var(--gray))]' : 'text-[hsl(var(--black))]'}`}>
-            {md.title}
-          </h2>
+  const upcomingFixtures = [
+    {
+      match: 'Pilsen FC vs Hyde Park Rangers FC',
+      date: 'June 14, 2026',
+      location: 'ComEd Recreation Center'
+    },
+    {
+      match: 'GF Chicago SN vs Al Farooq FC',
+      date: 'June 14, 2026',
+      location: 'Jackson Park'
+    },
+    {
+      match: 'Beverly FC vs Midway FC',
+      date: 'June 14, 2026',
+      location: 'Joan Kroc Center'
+    }
+  ];
 
-          {isNext && (
-            <span className="bg-[hsl(var(--primary))] text-white text-xs font-bold px-3 py-1 rounded-full label-text tracking-widest uppercase">
-              UP NEXT
-            </span>
-          )}
-
-          {md.played && (
-            <span className="bg-[hsl(var(--light-bg))] text-[hsl(var(--gray))] text-xs font-bold px-3 py-1 rounded-full label-text tracking-widest uppercase border border-[hsl(var(--white))]">
-              PLAYED
-            </span>
-          )}
-        </div>
-
-        <p className={`label-text text-lg md:text-xl tracking-widest m-0
-          ${md.played ? 'text-[hsl(var(--gray))]/60' : 'text-[hsl(var(--gray))]'}`}>
-          {md.date}
-        </p>
-      </div>
-
-      {/* Matches */}
-      <div className="space-y-4">
-        {md.matches.map((match, mIndex) => (
-          <MatchRow key={mIndex} match={match} played={md.played} />
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
-// ─── Tab button ───────────────────────────────────────────────────────────────
-function TabBtn({ active, onClick, children }) {
-  return (
-    <button
-      onClick={onClick}
-      className={`px-6 py-2 rounded-full font-bold label-text tracking-widest text-sm uppercase transition-all duration-200
-        ${active
-          ? 'bg-[hsl(var(--black))] text-[hsl(var(--true-white))]'
-          : 'bg-[hsl(var(--light-bg))] text-[hsl(var(--gray))] hover:bg-[hsl(var(--white))]'
-        }`}
-    >
-      {children}
-    </button>
-  );
-}
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
-function FixturesPage() {
-  const { matchdays, upcoming, loading, error } = useFixtures();
-  const [tab, setTab] = useState('upcoming');
-
-  const displayed = tab === 'upcoming' ? upcoming : matchdays;
-  // The next unplayed matchday is always upcoming[0]
-  const nextMd = upcoming[0] ?? null;
+  const recentResults = [
+    {
+      id: 1,
+      date: 'May 10, 2026',
+      homeTeam: 'Hunnids AC',
+      awayTeam: 'Midway FC',
+      homeScore: 2,
+      awayScore: 1
+    },
+    {
+      id: 2,
+      date: 'May 10, 2026',
+      homeTeam: 'Bronzeville AC',
+      awayTeam: 'Hyde Park Rangers',
+      homeScore: 0,
+      awayScore: 0
+    },
+    {
+      id: 3,
+      date: 'May 4, 2026',
+      homeTeam: 'Pilsen FC',
+      awayTeam: 'Beverly FC',
+      homeScore: 3,
+      awayScore: 1
+    },
+    {
+      id: 4,
+      date: 'May 4, 2026',
+      homeTeam: 'Al Farooq FC',
+      awayTeam: 'South Shore SC',
+      homeScore: 1,
+      awayScore: 2
+    }
+  ];
 
   return (
-    <div className="pt-32 pb-24 bg-[hsl(var(--background))] min-h-screen">
+    <>
       <Helmet>
-        <title>Fixtures | Chicago Super League</title>
-        <meta name="description" content="OutSouth League Season 1 full fixture list. Upcoming match days, kickoff times, and venues across the South Side." />
-        <link rel="canonical" href="https://chicagosuperleague.com/fixtures" />
-        <meta property="og:title" content="Fixtures | Chicago Super League" />
-        <meta property="og:description" content="OutSouth League Season 1 full fixture list. Upcoming match days, kickoff times, and venues across the South Side." />
-        <meta property="og:url" content="https://chicagosuperleague.com/fixtures" />
-        <meta name="twitter:title" content="Fixtures | Chicago Super League" />
-        <meta name="twitter:description" content="OutSouth League Season 1 full fixture list. Upcoming match days, kickoff times, and venues across the South Side." />
+        <title>Chicago Super League | South Side Soccer</title>
+
+        <meta
+          name="description"
+          content="Competitive community soccer across Chicago’s South Side."
+        />
       </Helmet>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative">
+        <Hero />
 
-        {/* Header */}
-        <div className="text-center mb-12">
-          <span className="label-text text-[hsl(var(--primary))] font-bold tracking-widest mb-3 block text-lg">
-            OutSouth League · Season 1 · 2025
-          </span>
-          <h1 className="text-[hsl(var(--black))] text-6xl md:text-7xl mb-6">FIXTURES</h1>
+        {!loading && news.length > 0 && (
+          <div className="absolute bottom-0 left-0 right-0 bg-[hsl(var(--black))]/80 backdrop-blur-md border-t border-[hsl(var(--white))]/20 z-20 overflow-hidden">
 
-          {/* Team banner */}
-          <div className="shadow-lg rounded-xl overflow-hidden mb-8">
-            <div className="bg-[hsl(var(--primary))] text-[hsl(var(--true-white))] py-4 px-6 text-center font-bold label-text text-xl tracking-wider">
-              28 fixtures · 160+ players
-            </div>
-            <div className="bg-[hsl(var(--black))] text-[hsl(var(--true-white))] py-4 px-6 text-center label-text text-sm md:text-base tracking-widest leading-relaxed">
-              Hyde Park Rangers FC · Pilsen FC · Beverly FC · Midway FC · Al Farooq FC · GF.Chicago.SN · Hunnids Athletic Club · Bronzeville Athletic Club
-            </div>
-          </div>
+            <div className="flex items-center">
 
-          {/* Tab toggle */}
-          <div className="flex justify-center gap-3">
-            <TabBtn active={tab === 'upcoming'} onClick={() => setTab('upcoming')}>
-              Upcoming
-            </TabBtn>
-            <TabBtn active={tab === 'all'} onClick={() => setTab('all')}>
-              All Fixtures
-            </TabBtn>
-          </div>
-        </div>
-
-        {/* Loading */}
-        {loading && (
-          <div className="flex justify-center items-center py-32">
-            <Loader className="w-10 h-10 animate-spin text-[hsl(var(--primary))]" />
-          </div>
-        )}
-
-        {/* Error */}
-        {!loading && error && (
-          <div className="flex items-start gap-4 bg-red-50 border border-red-200 rounded-2xl p-6 mb-8">
-            <AlertCircle className="w-6 h-6 text-red-500 shrink-0 mt-0.5" />
-            <div>
-              <p className="font-bold text-red-700 mb-1">Could not load fixtures</p>
-              <p className="text-red-600 text-sm">{error}</p>
-            </div>
-          </div>
-        )}
-
-        {/* Matchday list */}
-        {!loading && !error && (
-          <div className="space-y-16">
-            {displayed.length === 0 ? (
-              <div className="text-center py-20 text-[hsl(var(--gray))]">
-                <p className="text-2xl font-['Bebas_Neue'] mb-2">No upcoming fixtures</p>
-                <p className="text-sm">All matches have been played. Check back next season!</p>
-                {tab === 'upcoming' && (
-                  <button
-                    onClick={() => setTab('all')}
-                    className="mt-6 px-6 py-2 rounded-full bg-[hsl(var(--black))] text-[hsl(var(--true-white))] font-bold label-text text-sm uppercase tracking-widest hover:opacity-80 transition-opacity"
-                  >
-                    View All Fixtures
-                  </button>
-                )}
+              <div className="bg-[hsl(var(--primary))] text-white px-4 py-2 font-bold uppercase tracking-widest text-xs whitespace-nowrap z-10">
+                Latest News
               </div>
-            ) : (
-              displayed.map((md, index) => (
-                <MatchdayBlock
-                  key={md.id}
-                  md={md}
-                  index={index}
-                  isNext={nextMd && md.id === nextMd.id}
-                />
-              ))
-            )}
+
+              <div className="flex-1 overflow-hidden relative h-8 flex items-center">
+
+                <motion.div
+                  className="flex whitespace-nowrap gap-8 px-4"
+                  animate={{ x: [0, -1000] }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 30,
+                    ease: 'linear'
+                  }}
+                >
+                  {news.slice(0, 4).map((item, i) => (
+                    <Link
+                      key={i}
+                      to="/news"
+                      className="text-white text-sm hover:text-[hsl(var(--primary-light))] transition-colors flex items-center gap-2"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))]"></span>
+
+                      {item.title}
+                    </Link>
+                  ))}
+                </motion.div>
+
+              </div>
+            </div>
           </div>
         )}
       </div>
-    </div>
+
+      <Ticker />
+
+      <KickoffBanner />
+
+      {/* FEATURED MATCH */}
+      <section className="py-20 bg-[hsl(var(--black))] text-white border-t border-[hsl(var(--primary))]">
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+          <span className="label-text text-[hsl(var(--primary-light))] font-bold tracking-widest mb-4 block">
+            FEATURED MATCH
+          </span>
+
+          <h2 className="text-5xl md:text-7xl font-['Bebas_Neue'] text-[hsl(var(--primary))] mb-4">
+            PILSEN FC VS HYDE PARK RANGERS FC
+          </h2>
+
+          <p className="text-xl md:text-2xl text-white tracking-wide mb-2">
+            June 14, 2026
+          </p>
+
+          <p className="text-lg text-[hsl(var(--gray))] mb-8">
+            ComEd Recreation Center
+          </p>
+
+          <Button
+            size="lg"
+            className="bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary-dark))] text-white nav-text text-xl px-8 py-6"
+          >
+            Watch Live
+          </Button>
+
+        </div>
+      </section>
+
+      <ClubsSection />
+
+      {/* STANDINGS */}
+      <section className="py-20 md:py-32 bg-[hsl(var(--true-white))]">
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
+
+            <div>
+              <span className="label-text text-[hsl(var(--primary))] font-bold tracking-widest mb-2 block">
+                CURRENT STANDINGS
+              </span>
+
+              <h2 className="text-[hsl(var(--black))] m-0 text-4xl md:text-5xl">
+                OUTSOUTH LEAGUE
+              </h2>
+            </div>
+
+          </div>
+
+          <StandingsTable highlightTop={4} />
+
+        </div>
+      </section>
+
+      {/* RECENT RESULTS */}
+      <section className="py-20 bg-[hsl(var(--light-bg))]">
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="mb-10">
+            <span className="label-text text-[hsl(var(--primary))] font-bold tracking-widest mb-2 block">
+              RECENT MATCHES
+            </span>
+
+            <h2 className="text-[hsl(var(--black))] text-4xl md:text-5xl">
+              LATEST RESULTS
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {recentResults.map((result) => (
+              <div
+                key={result.id}
+                className="bg-white border rounded-xl p-6"
+              >
+                <div className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <Calendar className="w-3 h-3" />
+                  {result.date}
+                </div>
+
+                <div className="flex items-center justify-between">
+
+                  <div className="flex-1 text-right font-['Bebas_Neue'] text-2xl">
+                    {result.homeTeam}
+                  </div>
+
+                  <div className="mx-6 flex items-center gap-3 bg-black text-white px-4 py-2 rounded-lg">
+                    <span className="text-3xl">
+                      {result.homeScore}
+                    </span>
+
+                    <span className="text-xs font-bold">
+                      FT
+                    </span>
+
+                    <span className="text-3xl">
+                      {result.awayScore}
+                    </span>
+                  </div>
+
+                  <div className="flex-1 text-left font-['Bebas_Neue'] text-2xl">
+                    {result.awayTeam}
+                  </div>
+
+                </div>
+              </div>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+      {/* UPCOMING FIXTURES */}
+      <section className="py-20 bg-[hsl(var(--black))] text-white">
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <div className="mb-10">
+
+            <span className="label-text text-[hsl(var(--primary-light))] font-bold tracking-widest mb-2 block">
+              UPCOMING FIXTURES
+            </span>
+
+            <h2 className="text-4xl md:text-5xl">
+              JUNE 14 MATCHDAY
+            </h2>
+
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {upcomingFixtures.map((fixture, index) => (
+              <MatchCard
+                key={index}
+                match={fixture.match}
+                date={fixture.date}
+                location={fixture.location}
+              />
+            ))}
+
+          </div>
+        </div>
+      </section>
+
+      <LeagueStructure />
+      <SponsorsSection />
+      <JoinCTA />
+    </>
   );
 }
 
-export default FixturesPage;
+export default HomePage;
