@@ -14,8 +14,8 @@ function Hero() {
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source
-          src="https://res.cloudinary.com/dfpj9filc/image/upload/v1781053666/dzLHs_1_a5itja.jpg"
-          type="jpg"
+          src="https://res.cloudinary.com/dfpj9filc/video/upload/v1781052477/IMG_0742_xb8byq.mov"
+          type="video/mp4"
         />
       </video>
 
