@@ -8,7 +8,7 @@ function ClubsSection() {
     { name: 'Midway FC', location: 'South Side' },
     { name: 'Pilsen FC', location: 'South Side' },
     { name: 'Hyde Park Rangers', location: 'South Side' },
-    { name: 'Beverly FC', location: 'South Side', logo: '' },
+    { name: 'Beverly FC', location: 'South Side'},
     { name: 'Al Farooq FC', location: 'South Side' },
     { name: 'GF.Chicago.SN', location: 'South Side' }
   ];
