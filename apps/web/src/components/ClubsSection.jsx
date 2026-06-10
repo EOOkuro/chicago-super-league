@@ -9,7 +9,7 @@ function ClubsSection() {
     { name: 'Pilsen FC', location: 'South Side' },
     { name: 'Hyde Park Rangers', location: 'South Side', logo: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1781027195/IMG_0095_1_luswdi.png' },
     { name: 'Beverly FC', location: 'South Side', logo: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1781027245/209b06adf739c0419ebb82b952b3ddbf_2_-jukebox-bg-removed_wgiywf.png' },
-    { name: 'Al Farooq FC', location: 'South Side' },
+    { name: 'Al Farooq FC', location: 'South Side', logo: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1781027101/Image-1_1_-jukebox-bg-removed_rs6ks7.png' },
     { name: 'GF.Chicago.SN', location: 'South Side' }
   ];
 
