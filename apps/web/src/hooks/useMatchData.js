@@ -36,6 +36,37 @@ const MATCH_SHEETS = [
     homeTeam: 'Al Farooq',
     awayTeam: 'Pilsen FC',
   },
+
+  {
+    name: 'M2 Bronzeville AC vs Pilsen FC',
+    sheetName: 'M2 Bronzeville AC vs Pilsen FC',
+    date: 'Sunday May 31 2026',
+    location: 'Kenwood Academy',
+    matchday: 2,
+    homeTeam: 'Pilsen FC',
+    awayTeam: 'Bronzevill AC',
+  },
+
+  {
+    name: 'M2 Hunnids AC vs Beverly FC',
+    sheetName: 'M2 Hunnids AC vs Beverly FC',
+    date: 'Sunday June 7 2026',
+    location: 'Kenwood Academy',
+    matchday: 2,
+    homeTeam: 'Beverly FC',
+    awayTeam: 'Hunnids AC',
+  },
+
+  {
+    name: 'M2 Al Farooq vs Hyde Park Rangers FC',
+    sheetName: 'M2 Al Farooq vs Hyde Park Rangers FC',
+    date: 'Sunday June 7 2026',
+    location: 'Kenwood Academy',
+    matchday: 2,
+    homeTeam: 'Hyde Park Rangers FC',
+    awayTeam: 'Al Farooq',
+  },
+
   // Add future matches below as results come in:
   // {
   //   name: 'M1 Bronzeville AC vs GF Chicago SN',
