@@ -48,7 +48,7 @@ function Hero() {
             </p>
 
             <p className="text-lg md:text-2xl text-[hsl(var(--gray))] uppercase tracking-[0.2em]">
-              ComEd Recreation Center
+              
             </p>
           </div>
 
