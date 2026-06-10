@@ -3,7 +3,7 @@ import ClubCard from './ClubCard.jsx';
 
 function ClubsSection() {
   const clubs = [
-    { name: 'Hunnids AC', location: 'South Side'},
+    { name: 'Hunnids AC', location: 'South Side', logo: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1781027090/Firefly_Gemini_Flash_Take_out_the_wild_hundreds_part.___Take_out_the_est_1917._use_the_100_emoji_as_inspir_735066_1_-jukebox-bg-removed_oxqh2o.png'},
     { name: 'Bronzeville AC', location: 'South Side' },
     { name: 'Midway FC', location: 'South Side' },
     { name: 'Pilsen FC', location: 'South Side', logo: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1781027089/Signature__8Go6IybUUoK5JYPylWzcMjFFa2FQs6rsJq7ndWNNOqvRx1IqoKQtQXgwiwMzWu2v0SbBsRf67B0kGgR52ZrVvXu5Lq_BR96eT0N9XCMwY87xB8nr6nBZfa9sLYlbXUphwd9guwCpjk05k2ly9J6P4oObvUa_OBQcDR4uUM9zlGUYyS54y08OL9PCgW4a1pd3g98zOD6zJBd_aaqb3l.png' },
