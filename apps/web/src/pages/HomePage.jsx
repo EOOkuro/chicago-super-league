@@ -132,37 +132,6 @@ function HomePage() {
 
       <KickoffBanner />
 
-      {/* FEATURED MATCH */}
-      <section className="py-20 bg-[hsl(var(--black))] text-white border-t border-[hsl(var(--primary))]">
-
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-
-          <span className="label-text text-[hsl(var(--primary-light))] font-bold tracking-widest mb-4 block">
-            FEATURED MATCH
-          </span>
-
-          <h2 className="text-5xl md:text-7xl font-['Bebas_Neue'] text-[hsl(var(--primary))] mb-4">
-            PILSEN FC VS HYDE PARK RANGERS FC
-          </h2>
-
-          <p className="text-xl md:text-2xl text-white tracking-wide mb-2">
-            June 14, 2026
-          </p>
-
-          <p className="text-lg text-[hsl(var(--gray))] mb-8">
-           
-          </p>
-
-          <Button
-            size="lg"
-            className="bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary-dark))] text-white nav-text text-xl px-8 py-6"
-          >
-            Watch Live
-          </Button>
-
-        </div>
-      </section>
-
       <ClubsSection />
 
       {/* STANDINGS */}
