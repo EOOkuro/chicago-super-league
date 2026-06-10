@@ -38,23 +38,23 @@ const MATCH_SHEETS = [
   },
 
   {
-    name: 'M2 Bronzeville AC vs Pilsen FC',
-    sheetName: 'M2 Bronzeville AC vs Pilsen FC',
+    name: 'M2 Bronzeville Athletic Club vs Pilsen FC',
+    sheetName: 'M2 Bronzeville Athletic Club vs Pilsen FC',
     date: 'Sunday May 31 2026',
     location: 'Kenwood Academy',
     matchday: 2,
     homeTeam: 'Pilsen FC',
-    awayTeam: 'Bronzevill AC',
+    awayTeam: 'Bronzeville Athletic Club',
   },
 
   {
-    name: 'M2 Hunnids AC vs Beverly FC',
-    sheetName: 'M2 Hunnids AC vs Beverly FC',
+    name: 'M2 Hunnids Athletic Club vs Beverly FC',
+    sheetName: 'M2 Hunnids Athletic Club vs Beverly FC',
     date: 'Sunday June 7 2026',
     location: 'Kenwood Academy',
     matchday: 2,
     homeTeam: 'Beverly FC',
-    awayTeam: 'Hunnids AC',
+    awayTeam: 'Hunnids Athletic Club',
   },
 
   {
