@@ -3,13 +3,21 @@ import { Button } from '@/components/ui/button';
 
 function Hero() {
   return (
-    <section
-      className="relative h-screen overflow-hidden bg-cover bg-center"
-      style={{
-        backgroundImage:
-          "url('https://res.cloudinary.com/dfpj9filc/image/upload/v1781053666/dzLHs_1_a5itja.jpg')"
-      }}
-    >
+    <section className="relative h-screen overflow-hidden">
+
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source
+          src="https://res.cloudinary.com/dfpj9filc/image/upload/v1781053666/dzLHs_1_a5itja.jpg"
+          type="jpg"
+        />
+      </video>
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/70"></div>
@@ -35,7 +43,6 @@ function Hero() {
 
           {/* Match Info */}
           <div className="space-y-2 mb-10">
-
             <p className="text-xl md:text-3xl text-white uppercase tracking-widest">
               June 14, 2026
             </p>
@@ -43,7 +50,6 @@ function Hero() {
             <p className="text-lg md:text-2xl text-[hsl(var(--gray))] uppercase tracking-[0.2em]">
               ComEd Recreation Center
             </p>
-
           </div>
 
           {/* CTA Buttons */}
@@ -68,6 +74,7 @@ function Hero() {
 
         </div>
       </div>
+
     </section>
   );
 }
