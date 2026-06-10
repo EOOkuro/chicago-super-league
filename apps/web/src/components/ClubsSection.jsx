@@ -24,7 +24,7 @@ function ClubsSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {clubs.map((club, index) => (
-            <ClubCard key={index} name={club.name} location={club.location} />
+            <ClubCard key={index} name={club.name} location={club.location} logo={club.logo}/>
           ))}
         </div>
       </div>
