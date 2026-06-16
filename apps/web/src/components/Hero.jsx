@@ -5,22 +5,15 @@ function Hero() {
   return (
     <section className="relative h-screen overflow-hidden">
 
-      {/* Background Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
+      {/* Background Image */}
+      <img
+        src="https://res.cloudinary.com/dfpj9filc/image/upload/v1779386912/IMG_1984_tu2zw1.jpg"
+        alt="Youth soccer at South Side park"
         className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source
-          src="https://res.cloudinary.com/dfpj9filc/video/upload/v1781052477/IMG_0742_xb8byq.mov"
-          type="video/mp4"
-        />
-      </video>
+      />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/70"></div>
+      <div className="absolute inset-0 bg-black/60"></div>
 
       {/* Hero Content */}
       <div className="relative z-10 h-full flex items-center justify-center">
@@ -52,24 +45,15 @@ function Hero() {
             </p>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-
+          {/* CTA Button */}
+          <div className="flex items-center justify-center">
             <Button
               size="lg"
               className="bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary-dark))] text-white nav-text text-lg px-8 py-6"
+              onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSeVi7kj8XFcbnbRPP9p9ZXnSFIsc5YgRRSKaFJEmQEw1euwQw/viewform', '_blank')}
             >
               Register Now
             </Button>
-
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-black nav-text text-lg px-8 py-6"
-            >
-              View Schedule
-            </Button>
-
           </div>
 
         </div>
