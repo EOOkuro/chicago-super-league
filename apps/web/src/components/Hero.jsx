@@ -29,26 +29,26 @@ function Hero() {
 
           {/* League Label */}
           <span className="label-text text-[hsl(var(--primary-light))] font-bold tracking-[0.3em] mb-6 block uppercase">
-            Chicago Super League · Open Division
+            Chicago Super League · Youth Division
           </span>
 
-          {/* Match */}
+          {/* Announcement */}
           <h1 className="font-['Bebas_Neue'] text-6xl md:text-8xl lg:text-9xl leading-none text-white mb-6">
-            PILSEN FC
+            YOUTH LEAGUE
             <br />
-            <span className="text-[hsl(var(--primary))]">VS</span>
+            <span className="text-[hsl(var(--primary))]">KICKS OFF</span>
             <br />
-            HYDE PARK RANGERS FC
+            THIS WEEKEND
           </h1>
 
           {/* Match Info */}
           <div className="space-y-2 mb-10">
             <p className="text-xl md:text-3xl text-white uppercase tracking-widest">
-              June 14, 2026
+              June 21–22, 2026
             </p>
 
             <p className="text-lg md:text-2xl text-[hsl(var(--gray))] uppercase tracking-[0.2em]">
-              
+              South Side · Chicago
             </p>
           </div>
 
@@ -59,7 +59,7 @@ function Hero() {
               size="lg"
               className="bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary-dark))] text-white nav-text text-lg px-8 py-6"
             >
-              Watch Live
+              Register Now
             </Button>
 
             <Button
@@ -67,7 +67,7 @@ function Hero() {
               variant="outline"
               className="border-2 border-white text-white hover:bg-white hover:text-black nav-text text-lg px-8 py-6"
             >
-              View Fixtures
+              View Schedule
             </Button>
 
           </div>
