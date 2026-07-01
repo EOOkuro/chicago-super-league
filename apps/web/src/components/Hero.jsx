@@ -22,26 +22,26 @@ function Hero() {
 
           {/* League Label */}
           <span className="label-text text-[hsl(var(--primary-light))] font-bold tracking-[0.3em] mb-6 block uppercase">
-            Chicago Super League · Youth Division
+            Chicago Super League · OutWest Division
           </span>
 
           {/* Announcement */}
           <h1 className="font-['Bebas_Neue'] text-6xl md:text-8xl lg:text-9xl leading-none text-white mb-6">
-            YOUTH LEAGUE
+            OUTWEST
             <br />
             <span className="text-[hsl(var(--primary))]">KICKS OFF</span>
             <br />
-            THIS WEEKEND
+            JULY 31ST!
           </h1>
 
           {/* Match Info */}
           <div className="space-y-2 mb-10">
             <p className="text-xl md:text-3xl text-white uppercase tracking-widest">
-              June 21–22, 2026
+              Friday, July 31, 2026
             </p>
 
             <p className="text-lg md:text-2xl text-[hsl(var(--gray))] uppercase tracking-[0.2em]">
-              South Side · Chicago
+              West Side · Chicago
             </p>
           </div>
 
