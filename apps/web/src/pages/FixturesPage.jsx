@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { Loader, AlertCircle, MapPin, Clock } from 'lucide-react';
 import { useFixtures } from '../hooks/useFixtures.js';
+
+const TEAMS = [
+  'Hyde Park Rangers FC',
+  'Pilsen FC',
+  'Beverly FC',
+  'Midway FC',
+  'Al Farooq FC',
+  'GF.Chicago.SN',
+  'Hunnids Athletic Club',
+  'Bronzeville Athletic Club'
+];
 
 // ─── Individual match card ────────────────────────────────────────────────────
 function MatchRow({ match, played }) {
@@ -51,7 +62,6 @@ function MatchRow({ match, played }) {
 function MatchdayBlock({ md, index, isNext }) {
   return (
     <motion.div
-      key={md.id}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, delay: index * 0.07 }}
@@ -113,9 +123,24 @@ function TabBtn({ active, onClick, children }) {
 function FixturesPage() {
   const { matchdays, upcoming, loading, error } = useFixtures();
   const [tab, setTab] = useState('upcoming');
+  const [selectedTeam, setSelectedTeam] = useState('');
 
-  const displayed = tab === 'upcoming' ? upcoming : matchdays;
-  // The next unplayed matchday is always upcoming[0]
+  const baseDisplayed = tab === 'upcoming' ? upcoming : matchdays;
+
+  // Filters fixtures based on selected team while preserving matchday structure
+  const displayed = useMemo(() => {
+    if (!selectedTeam) return baseDisplayed;
+    
+    return baseDisplayed
+      .map(md => ({
+        ...md,
+        matches: md.matches.filter(
+          m => m.home === selectedTeam || m.away === selectedTeam
+        )
+      }))
+      .filter(md => md.matches.length > 0);
+  }, [baseDisplayed, selectedTeam]);
+
   const nextMd = upcoming[0] ?? null;
 
   return (
@@ -146,18 +171,35 @@ function FixturesPage() {
               28 fixtures · 160+ players
             </div>
             <div className="bg-[hsl(var(--black))] text-[hsl(var(--true-white))] py-4 px-6 text-center label-text text-sm md:text-base tracking-widest leading-relaxed">
-              Hyde Park Rangers FC · Pilsen FC · Beverly FC · Midway FC · Al Farooq FC · GF.Chicago.SN · Hunnids Athletic Club · Bronzeville Athletic Club
+              {TEAMS.join(' · ')}
             </div>
           </div>
 
-          {/* Tab toggle */}
-          <div className="flex justify-center gap-3">
-            <TabBtn active={tab === 'upcoming'} onClick={() => setTab('upcoming')}>
-              Upcoming
-            </TabBtn>
-            <TabBtn active={tab === 'all'} onClick={() => setTab('all')}>
-              All Fixtures
-            </TabBtn>
+          {/* Controls: Tab toggle & Team Filter */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 bg-[hsl(var(--true-white))] p-4 rounded-2xl border border-[hsl(var(--white))] shadow-sm">
+            <div className="flex gap-2">
+              <TabBtn active={tab === 'upcoming'} onClick={() => setTab('upcoming')}>
+                Upcoming
+              </TabBtn>
+              <TabBtn active={tab === 'all'} onClick={() => setTab('all')}>
+                All Fixtures
+              </TabBtn>
+            </div>
+
+            <div className="w-full sm:w-64">
+              <select
+                value={selectedTeam}
+                onChange={(e) => setSelectedTeam(e.target.value)}
+                className="w-full px-4 py-2 rounded-full border border-[hsl(var(--white))] bg-[hsl(var(--light-bg))] text-[hsl(var(--gray))] font-medium label-text text-sm tracking-wider uppercase focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))]"
+              >
+                <option value="">Filter by Team</option>
+                {TEAMS.map((team) => (
+                  <option key={team} value={team}>
+                    {team}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
 
@@ -184,14 +226,17 @@ function FixturesPage() {
           <div className="space-y-16">
             {displayed.length === 0 ? (
               <div className="text-center py-20 text-[hsl(var(--gray))]">
-                <p className="text-2xl font-['Bebas_Neue'] mb-2">No upcoming fixtures</p>
-                <p className="text-sm">All matches have been played. Check back next season!</p>
-                {tab === 'upcoming' && (
+                <p className="text-2xl font-['Bebas_Neue'] mb-2">No fixtures found</p>
+                <p className="text-sm">Try changing your team filter or view all fixtures.</p>
+                {(tab === 'upcoming' || selectedTeam) && (
                   <button
-                    onClick={() => setTab('all')}
+                    onClick={() => {
+                      setTab('all');
+                      setSelectedTeam('');
+                    }}
                     className="mt-6 px-6 py-2 rounded-full bg-[hsl(var(--black))] text-[hsl(var(--true-white))] font-bold label-text text-sm uppercase tracking-widest hover:opacity-80 transition-opacity"
                   >
-                    View All Fixtures
+                    Reset Filters
                   </button>
                 )}
               </div>
