@@ -17,6 +17,7 @@ import YouthPage from './pages/YouthPage.jsx';
 import ResultsPage from './pages/ResultsPage.jsx';
 import NewsPage from './pages/NewsPage.jsx';
 import CompetitionsPage from './pages/CompetitionsPage.jsx';
+import Checkout from './pages/checkout.jsx'; // Imported your new checkout page file
 import { Toaster } from 'sonner';
 
 // Scroll to top helper inside Router context
@@ -66,6 +67,10 @@ function App() {
             <Route path="/stats" element={<StatsPage />} />
             <Route path="/watch" element={<WatchPage />} />
             <Route path="/youth" element={<YouthPage />} />
+            
+            {/* HIDDEN TESTING ROUTE: Change this path string to simple "/checkout" whenever you are ready to launch publicly */}
+            <Route path="/checkout-secure-review-2026" element={<Checkout />} />
+
             <Route path="*" element={
               <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4 pt-20">
                 <h1 className="text-6xl text-[hsl(var(--black))] mb-4">404</h1>
