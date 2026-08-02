@@ -17,7 +17,7 @@ import YouthPage from './pages/YouthPage.jsx';
 import ResultsPage from './pages/ResultsPage.jsx';
 import NewsPage from './pages/NewsPage.jsx';
 import CompetitionsPage from './pages/CompetitionsPage.jsx';
-import Checkout from './pages/checkout.jsx'; // Imported your new checkout page file
+import Checkout from './pages/Checkout.jsx'; // Imported your new checkout page file
 import { Toaster } from 'sonner';
 
 // Scroll to top helper inside Router context
