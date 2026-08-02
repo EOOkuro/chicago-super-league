@@ -1,9 +1,13 @@
 {
-	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["./src/*"]
-		}
-	},
-	"include": ["src"]
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/checkout",
+      "destination": "/"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
 }
