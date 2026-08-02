@@ -3,12 +3,6 @@ import { Helmet } from 'react-helmet';
 import { CheckCircle2, ShieldCheck, CreditCard, Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-// --- APPLIES TO YOUR checkout.jsx FILE ---
-// How to import this component inside your router (e.g., App.jsx):
-// import Checkout from './pages/checkout'; 
-// <Route path="/checkout" element={<Checkout />} />
-// ----------------------------------------
-
 export default function Checkout() {
   // Default to Fall Pricing to prioritize active seasonal outreach
   const [billingCycle, setBillingCycle] = useState('fall'); // 'monthly' | 'fall' | 'yearly'
@@ -34,7 +28,7 @@ export default function Checkout() {
     <div className="pt-32 pb-24 bg-[hsl(var(--background))] min-h-screen">
       <Helmet>
         <title>Secure Checkout | Chicago Super League</title>
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="robots" content="noindex, nofollow" /> {/* Keeps the checkout out of search engines */}
       </Helmet>
 
       {/* Checkout Page Layout Header */}
