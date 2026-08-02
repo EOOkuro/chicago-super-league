@@ -18,7 +18,7 @@ import ResultsPage from './pages/ResultsPage.jsx';
 import NewsPage from './pages/NewsPage.jsx';
 import CompetitionsPage from './pages/CompetitionsPage.jsx';
 // Using the absolute alias path bypasses directory depth errors
-import Checkout from '@/pages/Checkout.jsx';
+import Checkout from './pages/Checkout.jsx';
 import { Toaster } from 'sonner';
 
 // Scroll to top helper inside Router context
