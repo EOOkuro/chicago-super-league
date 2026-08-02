@@ -17,7 +17,8 @@ import YouthPage from './pages/YouthPage.jsx';
 import ResultsPage from './pages/ResultsPage.jsx';
 import NewsPage from './pages/NewsPage.jsx';
 import CompetitionsPage from './pages/CompetitionsPage.jsx';
-import Checkout from './pages/Checkout.jsx'; // Imported your new checkout page file
+// Using the absolute alias path bypasses directory depth errors
+import Checkout from '@/pages/Checkout.jsx';
 import { Toaster } from 'sonner';
 
 // Scroll to top helper inside Router context
