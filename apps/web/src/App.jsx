@@ -70,7 +70,7 @@ function App() {
             <Route path="/youth" element={<YouthPage />} />
             
             {/* HIDDEN TESTING ROUTE: Change this path string to simple "/checkout" whenever you are ready to launch publicly */}
-            <Route path="/checkout-secure-review-2026" element={<Checkout />} />
+            <Route path="/checkout={<Checkout />} />
 
             <Route path="*" element={
               <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4 pt-20">
