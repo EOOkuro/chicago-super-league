@@ -17,7 +17,6 @@ import YouthPage from './pages/YouthPage.jsx';
 import ResultsPage from './pages/ResultsPage.jsx';
 import NewsPage from './pages/NewsPage.jsx';
 import CompetitionsPage from './pages/CompetitionsPage.jsx';
-// Using the absolute alias path bypasses directory depth errors
 import Checkout from './pages/Checkout.jsx';
 import { Toaster } from 'sonner';
 
@@ -69,8 +68,8 @@ function App() {
             <Route path="/watch" element={<WatchPage />} />
             <Route path="/youth" element={<YouthPage />} />
             
-            {/* HIDDEN TESTING ROUTE: Change this path string to simple "/checkout" whenever you are ready to launch publicly */}
-            <Route path="/checkout={<Checkout />} />
+            {/* CORRECTED ROUTE */}
+            <Route path="/checkout" element={<Checkout />} />
 
             <Route path="*" element={
               <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4 pt-20">
