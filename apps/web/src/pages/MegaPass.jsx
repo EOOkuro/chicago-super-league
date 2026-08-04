@@ -8,7 +8,7 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 
-// Replace with your actual Stripe Publishable Key (pk_live_... or pk_test_...)
+// Replace with your actual Stripe Publishable Key
 const stripePromise = loadStripe('pk_test_51Px...YOUR_PUBLISHABLE_KEY');
 
 // Inner Form Component handling Apple Pay, Google Pay, Cards & BNPL
@@ -19,7 +19,7 @@ function CheckoutForm({ businessName, setBusinessName, email, setEmail }) {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 
-  // Common submit handler for standard form submit
+  // Submit handler for standard PaymentElement submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
@@ -40,7 +40,6 @@ function CheckoutForm({ businessName, setBusinessName, email, setEmail }) {
       },
     });
 
-    // This code only runs if an immediate error happens (e.g. card declined)
     if (error) {
       setErrorMsg(error.message);
       setLoading(false);
@@ -65,10 +64,10 @@ function CheckoutForm({ businessName, setBusinessName, email, setEmail }) {
 
   return (
     <div style={{ textAlign: 'left', maxWidth: '480px', margin: '0 auto' }}>
-      {/* 1. APPLE PAY / GOOGLE PAY / LINK BUTTONS */}
+      {/* 1. DIGITAL WALLETS (Apple Pay, Google Pay, Link) */}
       <div style={{ marginBottom: '20px' }}>
         <label style={{ display: 'block', fontWeight: '600', marginBottom: '8px', fontSize: '0.9rem', color: '#334155' }}>
-          Express Checkout (Apple Pay, Google Pay, Link)
+          Express Checkout
         </label>
         <ExpressCheckoutElement onConfirm={handleExpressConfirm} />
       </div>
@@ -114,7 +113,6 @@ function CheckoutForm({ businessName, setBusinessName, email, setEmail }) {
             Payment Method
           </label>
           <div style={{ padding: '12px', border: '1px solid #cbd5e1', borderRadius: '6px', background: '#ffffff' }}>
-            {/* PaymentElement supports Cards, Klarna, Affirm, Afterpay, Cash App, etc. */}
             <PaymentElement options={{ layout: 'tabs' }} />
           </div>
         </div>
@@ -156,6 +154,7 @@ function CheckoutForm({ businessName, setBusinessName, email, setEmail }) {
 // Main Page Wrapper
 export default function MegaPass() {
   const [clientSecret, setClientSecret] = useState('');
+  const [apiError, setApiError] = useState(null);
   const [businessName, setBusinessName] = useState('');
   const [email, setEmail] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
@@ -168,16 +167,34 @@ export default function MegaPass() {
     }
   }, []);
 
-  // Fetch PaymentIntent when component loads
+  // Fetch PaymentIntent on component load
   useEffect(() => {
     fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ businessName, email }),
+      body: JSON.stringify({ 
+        businessName: businessName || 'Sponsor Reserved', 
+        email: email || 'sponsor@chicagosuperleague.com' 
+      }),
     })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret))
-      .catch((err) => console.error("Error creating payment intent:", err));
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok || data.error) {
+          throw new Error(data.error || `Server error (${res.status})`);
+        }
+        return data;
+      })
+      .then((data) => {
+        if (data.clientSecret) {
+          setClientSecret(data.clientSecret);
+        } else {
+          throw new Error("Missing clientSecret from backend response");
+        }
+      })
+      .catch((err) => {
+        console.error("Error creating payment intent:", err);
+        setApiError(err.message);
+      });
   }, []);
 
   return (
@@ -245,6 +262,14 @@ export default function MegaPass() {
             <h3 style={{ color: '#166534', margin: '0 0 10px 0', fontSize: '1.5rem' }}>🎉 Spot Locked In!</h3>
             <p style={{ color: '#15803d', margin: 0 }}>
               Thank you for supporting Chicago Super League! Check your email for logo upload instructions.
+            </p>
+          </div>
+        ) : apiError ? (
+          <div style={{ textAlign: 'center', color: '#dc2626', background: '#fef2f2', padding: '20px', borderRadius: '12px', border: '1px solid #fca5a5' }}>
+            <p style={{ fontWeight: '700', margin: '0 0 6px 0' }}>Unable to load payment form</p>
+            <p style={{ margin: 0, fontSize: '0.85rem', color: '#7f1d1d' }}>{apiError}</p>
+            <p style={{ margin: '10px 0 0 0', fontSize: '0.8rem', color: '#991b1b' }}>
+              Check that <code>STRIPE_SECRET_KEY</code> is configured in Vercel environment variables.
             </p>
           </div>
         ) : clientSecret ? (
