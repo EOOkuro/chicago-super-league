@@ -287,7 +287,6 @@ export default function MegaPass() {
           </div>
         )}
       </div>
-
     </div>
   );
 }
