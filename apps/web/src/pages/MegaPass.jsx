@@ -173,11 +173,11 @@ export default function MegaPass() {
         </h1>
 
         <p style={{ fontSize: '1.2rem', color: '#4b5563', maxWidth: '650px', margin: '0 auto', lineHeight: '1.5' }}>
-          <strong>7 Months of Continuous Exposure</strong> (August – February) across Fall Outdoor &amp; Winter Indoor Seasons.
+          <strong>6 Months of Continuous Exposure</strong> (September – March) across Fall Outdoor &amp; Winter Indoor Seasons.
         </p>
       </div>
 
-      {/* Visual Mockups Grid */}
+      {/* Visual Mockups Grid 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '40px' }}>
         <div style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}>
           <img src={MOCKUP_IMG_1} alt="Field Sign Setup" style={{ width: '100%', height: '240px', objectFit: 'cover', display: 'block' }} />
@@ -186,6 +186,7 @@ export default function MegaPass() {
           <img src={MOCKUP_IMG_2} alt="Youth Match Branding" style={{ width: '100%', height: '240px', objectFit: 'cover', display: 'block' }} />
         </div>
       </div>
+      */}
 
       {/* Value Breakdown Card */}
       <div style={{ background: '#f8fafc', padding: '32px', borderRadius: '16px', border: '1px solid #e2e8f0', marginBottom: '40px' }}>
@@ -194,10 +195,10 @@ export default function MegaPass() {
         </h2>
         <ul style={{ paddingLeft: '20px', margin: 0, lineHeight: '1.8', color: '#334155', fontSize: '1.05rem' }}>
           <li style={{ marginBottom: '12px' }}>
-            <strong>Full 7-Month Coverage:</strong> August through November (Fall Outdoor) + December through February (Winter Indoor).
+            <strong>Full 7-Month Coverage:</strong> September through March (Fall Outdoor) + December through February (Winter Indoor).
           </li>
           <li style={{ marginBottom: '12px' }}>
-            <strong>High-Traffic Exposure:</strong> Premium A-frame sign placed front-and-center at Saturday youth matches, adult pickups (40–80 players weekly), and live-streamed games.
+            <strong>High-Traffic Exposure:</strong> Premium A-frame sign placed front-and-center at weekend youth matches, adult pickups, adultand live-streamed games.
           </li>
           <li style={{ marginBottom: '12px' }}>
             <strong>Institutional Footprint:</strong> Reach families across Charter, Catholic, Private, Park District, and non-profit sports networks across the South Side.
