@@ -18,6 +18,7 @@ import ResultsPage from './pages/ResultsPage.jsx';
 import NewsPage from './pages/NewsPage.jsx';
 import CompetitionsPage from './pages/CompetitionsPage.jsx';
 import Checkout from './pages/Checkout.jsx';
+import MegaPass from './pages/MegaPass.jsx'; // <--- IMPORTED MEGAPASS PAGE
 import { Toaster } from 'sonner';
 
 // Scroll to top helper inside Router context
@@ -68,7 +69,10 @@ function App() {
             <Route path="/watch" element={<WatchPage />} />
             <Route path="/youth" element={<YouthPage />} />
             
-            {/* CORRECTED ROUTE */}
+            {/* SPONSOR MEGAPASS ROUTES */}
+            <Route path="/megapass" element={<MegaPass />} />
+
+            {/* CHECKOUT ROUTE */}
             <Route path="/checkout" element={<Checkout />} />
 
             <Route path="*" element={
