@@ -24,8 +24,8 @@ export default async function handler(req, res) {
       },
     });
 
-    // 3. Return the client secret to React
-    return res.status(200).json({ clientSecret: paymentIntent.clientSecret });
+    // 3. Return client_secret (snake_case from Stripe SDK) mapped to camelCase for React
+    return res.status(200).json({ clientSecret: paymentIntent.client_secret });
   } catch (err) {
     console.error('Stripe PaymentIntent Error:', err);
     return res.status(500).json({ error: err.message });

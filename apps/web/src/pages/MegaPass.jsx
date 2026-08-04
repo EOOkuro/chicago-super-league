@@ -9,7 +9,7 @@ import {
 } from '@stripe/react-stripe-js';
 
 // Replace with your actual Stripe Publishable Key
-const stripePromise = loadStripe('pk_test_51Px...YOUR_PUBLISHABLE_KEY');
+const stripePromise = loadStripe('pk_live_51RjlXeB1PDuEX7rFIOnEc1Rh0qn0WxXsXb55SH1zQgnr7dUOcdIuCQXSocvYAmE13X0JnAQ6q4Fb8Z2lvSiaQHt900LqHNidF6');
 
 // Inner Form Component handling Apple Pay, Google Pay, Cards & BNPL
 function CheckoutForm({ businessName, setBusinessName, email, setEmail }) {
