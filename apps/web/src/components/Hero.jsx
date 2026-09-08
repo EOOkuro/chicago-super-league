@@ -20,7 +20,8 @@ function Hero() {
     },
     {
       type: 'video',
-      bgImage: 'https://www.youtube.com/watch?v=KOzYa4yDm0g',
+      // Use your Cloudinary image (or another valid image) as the background here
+      bgImage: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1779386912/IMG_1984_tu2zw1.jpg',
       label: 'The Mission · Chicago Super League',
       titleLine1: 'BUILDING',
       titleHighlight: 'THE ECOSYSTEM',
