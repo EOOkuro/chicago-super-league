@@ -20,14 +20,13 @@ function Hero() {
     },
     {
       type: 'video',
-      // Use your Cloudinary image (or another valid image) as the background here
-      bgImage: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1779386912/IMG_1984_tu2zw1.jpg',
+      youtubeId: 'KOzYa4yDm0g',
       label: 'The Mission · Chicago Super League',
       titleLine1: 'BUILDING',
       titleHighlight: 'THE ECOSYSTEM',
       titleLine3: 'ON THE SOUTH SIDE',
       description: "Recreational sports shouldn't be locked behind structural barriers. Watch the pitch behind the movement.",
-      ctaText: 'Watch Full Pitch',
+      ctaText: 'Watch on YouTube',
       ctaAction: () => window.open('https://www.youtube.com/watch?v=KOzYa4yDm0g', '_blank')
     }
   ];
