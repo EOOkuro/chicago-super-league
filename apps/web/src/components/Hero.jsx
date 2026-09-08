@@ -25,7 +25,7 @@ function Hero() {
       titleLine1: 'BUILDING',
       titleHighlight: 'THE ECOSYSTEM',
       titleLine3: 'ON THE SOUTH SIDE',
-      description: "Recreational sports shouldn't be locked behind structural barriers. Watch the pitch behind the movement.",
+      description: "Check out the pitch video to see how the Chicago Super League is breaking down structural barriers in recreational sports. Support the movement by watching the video, giving it a like, and commenting with the neighborhood mentioned in the clip.",
       ctaText: 'Watch on YouTube',
       ctaAction: () => window.open('https://www.youtube.com/watch?v=KOzYa4yDm0g', '_blank')
     }
