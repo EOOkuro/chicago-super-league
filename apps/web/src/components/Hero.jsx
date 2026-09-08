@@ -9,14 +9,14 @@ function Hero() {
     {
       type: 'image',
       bgImage: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1779386912/IMG_1984_tu2zw1.jpg',
-      label: 'Chicago Super League · OutWest Division',
-      titleLine1: 'OUTWEST',
-      titleHighlight: 'KICKS OFF',
-      titleLine3: 'JULY 31ST!',
-      date: 'Friday, July 31, 2026',
-      location: 'West Side · Chicago',
-      ctaText: 'Register Now',
-      ctaAction: () => window.open('https://docs.google.com/forms/d/e/1FAIpQLSeVi7kj8XFcbnbRPP9p9ZXnSFIsc5YgRRSKaFJEmQEw1euwQw/viewform', '_blank')
+      label: 'OutSouth League · Rivalry Match',
+      titleLine1: 'PICO FC',
+      titleHighlight: 'VS',
+      titleLine3: 'AL FAROOQ',
+      date: 'Sunday, Sept 13, 2026 · 12:00 PM',
+      location: 'Bob Pickens Track · 63rd & Stoney Island',
+      ctaText: 'Watch Live Stream',
+      ctaAction: () => window.open('https://www.chicagosuperleague.com/watch', '_blank')
     },
     {
       type: 'video',
@@ -25,13 +25,12 @@ function Hero() {
       titleLine1: 'BUILDING',
       titleHighlight: 'THE ECOSYSTEM',
       titleLine3: 'ON THE SOUTH SIDE',
-      description: "Recreational sports shouldn't be locked behind structural barriers. See how we're changing the game.",
+      description: "Recreational sports shouldn't be locked behind structural barriers. Watch the pitch behind the movement.",
       ctaText: 'Watch Full Pitch',
       ctaAction: () => window.open('https://www.youtube.com/watch?v=KOzYa4yDm0g', '_blank')
     }
   ];
 
-  // Optional: Auto-advance slides every 7 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -49,15 +48,14 @@ function Hero() {
 
   return (
     <section className="relative h-screen overflow-hidden">
-      {/* Slides */}
       {slides.map((slide, index) => (
         <div
           key={index}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentSlide ? 'opacity-150 z-10' : 'opacity-0 z-0 pointer-events-none'
+            index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
           }`}
         >
-          {/* Background Image / Poster */}
+          {/* Background Image */}
           <img
             src={slide.bgImage}
             alt="Hero background"
