@@ -29,7 +29,7 @@ function HomePage() {
       location: 'ComEd Recreation Center'
     },
     {
-      match: 'GF Chicago SN vs Al Farooq FC',
+      match: 'Pico FC vs Al Farooq FC',
       date: 'June 14, 2026',
       location: 'Jackson Park'
     },
@@ -245,6 +245,30 @@ function HomePage() {
               />
             ))}
 
+          </div>
+        </div>
+      </section>
+
+      {/* PITCH / VISION EMBED */}
+      <section className="py-20 bg-[hsl(var(--black))] text-white border-t border-white/10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="label-text text-[hsl(var(--primary-light))] font-bold tracking-widest mb-2 block">
+            THE MISSION
+          </span>
+          <h2 className="text-4xl md:text-5xl mb-6">
+            BUILDING THE ECOSYSTEM ON THE SOUTH SIDE
+          </h2>
+          <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
+            Recreational sports shouldn't be locked behind structural barriers. Here is the vision behind Chicago Super League—keeping access open and community sports sustainable.
+          </p>
+          <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/10">
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/KOzYa4yDm0g"
+              title="Chicago Super League Semifinalist Pitch"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
       </section>
