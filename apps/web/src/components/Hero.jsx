@@ -47,7 +47,7 @@ function Hero() {
   };
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative h-screen overflow-hidden bg-black">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -55,12 +55,23 @@ function Hero() {
             index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
           }`}
         >
-          {/* Background Image */}
-          <img
-            src={slide.bgImage}
-            alt="Hero background"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+          {/* Conditional Background: Image for slide 1, Embedded YouTube Iframe for slide 2 */}
+          {slide.type === 'image' ? (
+            <img
+              src={slide.bgImage}
+              alt="Hero background"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 w-full h-full overflow-hidden">
+              <iframe
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.77777778vh] h-[56.25vw] min-w-full min-h-full pointer-events-none opacity-80"
+                src={`https://www.youtube.com/embed/${slide.youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${slide.youtubeId}`}
+                title="YouTube background video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              ></iframe>
+            </div>
+          )}
 
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/60"></div>
