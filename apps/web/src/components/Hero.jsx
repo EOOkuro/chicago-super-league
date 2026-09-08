@@ -8,7 +8,7 @@ function Hero() {
   const slides = [
     {
       type: 'image',
-      bgImage: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1779386912/IMG_1984_tu2zw1.jpg',
+      bgImage: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1788896430/799829550_18096959519131919_1172445974521637839_n_zxmer4.jpg',
       label: 'OutSouth League · Rivalry Match',
       titleLine1: 'PICO FC',
       titleHighlight: 'VS',
@@ -20,7 +20,7 @@ function Hero() {
     },
     {
       type: 'video',
-      bgImage: 'https://res.cloudinary.com/dfpj9filc/image/upload/v1788896430/799829550_18096959519131919_1172445974521637839_n_zxmer4.jpg',
+      bgImage: 'https://www.youtube.com/watch?v=KOzYa4yDm0g',
       label: 'The Mission · Chicago Super League',
       titleLine1: 'BUILDING',
       titleHighlight: 'THE ECOSYSTEM',
