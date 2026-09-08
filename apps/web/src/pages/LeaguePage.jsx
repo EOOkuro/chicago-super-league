@@ -26,8 +26,8 @@ const ALL_FIXTURES = [
   { match: 'Beverly FC vs Pilsen FC', date: 'May 11, 2025', location: 'Comed' },
   { match: 'Midway FC vs Hunnids AC', date: 'May 15, 2025', location: 'West Lawn' },
   { match: 'Hyde Park Rangers vs Al Farooq FC', date: 'May 17, 2025', location: 'Jackson Park' },
-  { match: 'Bronzeville AC vs GF.Chicago.SN', date: 'May 17, 2025', location: 'De La Salle' },
-  { match: 'GF.Chicago.SN vs Beverly FC', date: 'May 24, 2025', location: 'De La Salle' },
+  { match: 'Bronzeville AC vs Pico FC', date: 'May 17, 2025', location: 'De La Salle' },
+  { match: 'Pico FC vs Beverly FC', date: 'May 24, 2025', location: 'De La Salle' },
   { match: 'Al Farooq FC vs Midway FC', date: 'May 24, 2025', location: 'Jackson Park' }
 ];
 

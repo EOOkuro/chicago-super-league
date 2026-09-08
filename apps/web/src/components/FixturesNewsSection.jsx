@@ -7,7 +7,7 @@ function FixturesNewsSection() {
     { match: 'Beverly FC vs Pilsen FC', date: 'May 11, 2025', location: 'Comed' },
     { match: 'Midway FC vs Hunnids Athletic Club', date: 'May 15, 2025', location: 'West Lawn' },
     { match: 'Hyde Park Rangers FC vs Al Farooq', date: 'May 17, 2025', location: 'Jackson Park' },
-    { match: 'Bronzeville Athletic Club vs GF.Chicago.SN', date: 'May 17, 2025', location: 'De La Salle' }
+    { match: 'Bronzeville Athletic Club vs Pico FC', date: 'May 17, 2025', location: 'De La Salle' }
   ];
 
   const news = [

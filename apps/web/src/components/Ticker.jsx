@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Ticker() {
-  const text = "Hunnids AC • Bronzeville AC • Midway FC • Pilsen FC • Hyde Park Rangers • Beverly FC • Al Farooq FC • GF.Chicago.SN • ";
+  const text = "Hunnids AC • Bronzeville AC • Midway FC • Pilsen FC • Hyde Park Rangers • Beverly FC • Al Farooq FC • Pico FC • ";
   
   return (
     <div className="bg-[hsl(var(--black))] text-[hsl(var(--true-white))] py-4 overflow-hidden border-y border-[hsl(var(--gray))]/30">
