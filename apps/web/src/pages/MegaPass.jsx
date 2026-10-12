@@ -221,7 +221,7 @@ export default function MegaPass() {
         </h1>
 
         <p style={{ fontSize: '1.2rem', color: '#4b5563', maxWidth: '650px', margin: '0 auto', lineHeight: '1.5' }}>
-          <strong>6 Months of Continuous Exposure</strong> (September – March) across Fall Outdoor &amp; Winter Indoor Seasons.
+          <strong>6 Months of Continuous Exposure</strong> (October – March) across Fall Outdoor &amp; Winter Indoor Seasons.
         </p>
       </div>
 
@@ -232,7 +232,7 @@ export default function MegaPass() {
         </h2>
         <ul style={{ paddingLeft: '20px', margin: 0, lineHeight: '1.8', color: '#334155', fontSize: '1.05rem' }}>
           <li style={{ marginBottom: '12px' }}>
-            <strong>Full Coverage:</strong> September through March (Fall Outdoor &amp; Winter Indoor Seasons).
+            <strong>Full Coverage:</strong>October through March (Fall Outdoor &amp; Winter Indoor Seasons).
           </li>
           <li style={{ marginBottom: '12px' }}>
             <strong>High-Traffic Exposure:</strong> Premium A-frame sign placed front-and-center at weekend youth matches, adult pickups, and live-streamed games.
