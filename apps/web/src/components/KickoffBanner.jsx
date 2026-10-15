@@ -23,11 +23,13 @@ function KickoffBanner() {
           <div className="text-center lg:text-left max-w-3xl">
 
             <h2 className="text-4xl md:text-6xl text-[hsl(var(--primary))] mb-4 font-['Bebas_Neue'] leading-none">
-              SOUTH SIDE COMPETITIVE SOCCER LIVES HERE.
+              CHICAGO’S PREMIER ADULT SOCCER ECOSYSTEM.
+
             </h2>
 
             <p className="label-text text-xl md:text-2xl text-white tracking-widest">
-              MATCHES ALL SUMMER.
+               YEAR-ROUND MATCHES | NORTH, WEST & SOUTH SIDE. 
+              Futsal and 11v11. 
             </p>
 
           </div>
