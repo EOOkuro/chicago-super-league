@@ -14,6 +14,7 @@ import PlayersPage from './pages/PlayersPage.jsx';
 import StatsPage from './pages/StatsPage.jsx';
 import WatchPage from './pages/WatchPage.jsx';
 import YouthPage from './pages/YouthPage.jsx';
+import PlayerRegisterPage from './pages/PlayerRegisterPage.jsx';
 import ResultsPage from './pages/ResultsPage.jsx';
 import NewsPage from './pages/NewsPage.jsx';
 import CompetitionsPage from './pages/CompetitionsPage.jsx';
@@ -68,6 +69,7 @@ function App() {
             <Route path="/stats" element={<StatsPage />} />
             <Route path="/watch" element={<WatchPage />} />
             <Route path="/youth" element={<YouthPage />} />
+            <Route path="/register" element={<PlayerRegisterPage />} />
             
             {/* SPONSOR MEGAPASS ROUTES */}
             <Route path="/megapass" element={<MegaPass />} />

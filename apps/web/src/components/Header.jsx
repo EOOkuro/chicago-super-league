@@ -152,6 +152,7 @@ function Header() {
     { name: 'Watch',     path: '/watch', highlight: true },
     { name: 'Stats',     path: '/stats' },
     { name: 'Youth',     path: '/youth' },
+    { name: 'Register',  path: '/register' },
     { name: 'Players',   path: '/players' },
     { name: 'Sponsors',  path: '/sponsors' },
   ];
